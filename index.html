@@ -1,0 +1,2429 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="Az7e5vXuiHngtDKLLUG4GH">
+<head data-page-node-id="H2D6BKPYXHfMioaTIwaHVZ">
+<meta charset="UTF-8" data-page-node-id="yTlZle8iWY3ItiMeliOprF">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" data-page-node-id="iASDZ6S60RjAMxrTwyEDYU">
+<title>EMMA 英语乐园</title>
+<style>
+:root{
+  --y1:#FFC42E; --y2:#FFD964; --ydeep:#EFA800; --ytext:#6B4A00;
+  --bg:#FFF7E6; --card:#FFFFFF; --ink:#3A2E1A; --muted:#9C8E74;
+  --blue:#5E9BFF; --blueBg:#E7F0FF; --orange:#FF9F2E; --orangeBg:#FFEEDA;
+  --green:#4CC36A; --greenBg:#E5F8E9; --pink:#FF7EB0; --pinkBg:#FFE9F2;
+  --purple:#9B7BFF; --purpleBg:#F0E9FF;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+  color:var(--ink);
+  background:linear-gradient(180deg,#FFB800 0,#FFCE4A 200px,#FFE9AE 380px,var(--bg) 520px);
+  background-attachment:fixed;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+#page{flex:1;overflow-y:auto;padding:0 14px 96px;width:100%;max-width:520px;margin:0 auto}
+h1{font-size:22px}
+.muted{color:var(--muted);font-size:13px}
+
+/* ---------- top header ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 4px 10px}
+.topbar .ttl{display:flex;align-items:center;gap:8px;font-size:24px;font-weight:900}
+.topbar .mascot{font-size:30px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.15))}
+.topbar .right{font-size:14px;font-weight:700;color:var(--ytext);background:rgba(255,255,255,.55);padding:6px 12px;border-radius:20px;cursor:pointer}
+
+/* ---------- cards ---------- */
+.card{background:var(--card);border-radius:20px;box-shadow:0 6px 18px rgba(180,130,20,.10);padding:16px;margin-bottom:14px}
+.secT{display:flex;align-items:center;justify-content:space-between;margin:16px 2px 10px}
+.secT b{font-size:17px}
+.secT .bar{display:inline-block;width:5px;height:16px;background:var(--y1);border-radius:3px;margin-right:6px;vertical-align:-2px}
+.secT .more{font-size:13px;color:var(--muted);cursor:pointer}
+
+/* ---------- textbook card ---------- */
+.bookCard{display:flex;gap:14px;align-items:flex-start}
+.cover{width:84px;height:112px;border-radius:8px;flex:none;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,#79D0E8 0%,#3FA9C9 55%,#2B7FA8 100%);
+  box-shadow:2px 3px 8px rgba(0,60,90,.25);color:#fff}
+.cover::after{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:rgba(255,255,255,.25)}
+.cover .cb1{position:absolute;top:8px;left:12px;font-size:9px;letter-spacing:1px;opacity:.9}
+.cover .cb2{position:absolute;top:20px;left:12px;font-size:26px;font-weight:900;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+.cover .cb3{position:absolute;top:50px;left:12px;font-size:8px;letter-spacing:2px}
+.cover .cb4{position:absolute;bottom:10px;left:12px;font-size:10px;font-weight:700;background:rgba(255,255,255,.9);color:#1B6E93;padding:2px 6px;border-radius:4px}
+.cover .cbig{position:absolute;right:-6px;bottom:22px;font-size:52px;font-weight:900;color:rgba(255,255,255,.35)}
+.bookInfo{flex:1;min-width:0}
+.chip{display:inline-block;background:linear-gradient(180deg,#FFD54F,#FFB300);color:#6B4A00;font-size:12px;font-weight:800;padding:5px 12px;border-radius:16px;box-shadow:0 2px 0 #E09600;cursor:pointer}
+.bookName{font-size:19px;font-weight:900;margin:8px 0 2px}
+.bookSub{font-size:12px;color:var(--muted)}
+.pbarWrap{height:8px;background:#F2E8CF;border-radius:5px;margin:12px 0 6px;overflow:hidden}
+.pbar{height:100%;background:linear-gradient(90deg,#FFD54F,#FFB300);border-radius:5px;transition:width .4s}
+.bookStat{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.bookStat b{color:var(--ink)}
+
+/* ---------- plan today ---------- */
+.todayGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.todayCard{border-radius:18px;padding:16px 14px 14px;color:#fff;position:relative;overflow:hidden}
+.todayCard .bigIco{position:absolute;top:10px;left:12px;font-size:26px;opacity:.9}
+.todayCard .cnt{text-align:center;font-size:26px;font-weight:900;margin:14px 0 12px;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+.todayCard .cnt small{font-size:14px;opacity:.85}
+.tBlue{background:linear-gradient(160deg,#7FB3FF,#4A86F0)}
+.tOrange{background:linear-gradient(160deg,#FFB84D,#FF9013)}
+.todayBtn{display:block;width:100%;border:none;border-radius:12px;padding:9px 0;font-size:16px;font-weight:900;cursor:pointer;background:rgba(255,255,255,.92)}
+.tBlue .todayBtn{color:#2F6BD8;box-shadow:0 3px 0 #D3E2F8}
+.tOrange .todayBtn{color:#E67E00;box-shadow:0 3px 0 #F5DCB8}
+.todayBtn:active{transform:translateY(2px);box-shadow:none}
+
+/* ---------- day list ---------- */
+.dayRow{display:flex;align-items:center;gap:10px;background:#FDFBF4;border:1.5px solid #F1E9D2;border-radius:14px;padding:12px 14px;margin-bottom:8px}
+.dayRow.done{background:var(--greenBg);border-color:#BFE8C9}
+.badge{flex:none;font-size:12px;font-weight:800;padding:4px 9px;border-radius:8px}
+.bDone{color:#2E9E4F;background:#D4F0DB;border:1.5px dashed #7CCB93}
+.bDoing{color:#fff;background:var(--orange)}
+.bTodo{color:#B9AE95;background:#F0EAD6}
+.dayRow .dname{font-weight:900;font-size:15px;width:58px}
+.dayRow .dinfo{flex:1;display:flex;justify-content:space-around;font-size:14px;color:var(--muted)}
+.dayRow .dinfo b{color:var(--ink);font-size:16px}
+
+/* ---------- chunky button ---------- */
+.btn3d{display:block;width:100%;border:none;cursor:pointer;text-align:center;
+  background:linear-gradient(180deg,#FFD54F,#FFB300);color:#5A3A00;
+  font-size:17px;font-weight:900;padding:14px 0;border-radius:16px;
+  box-shadow:0 4px 0 #E09600,0 8px 16px rgba(224,150,0,.25)}
+.btn3d:active{transform:translateY(3px);box-shadow:0 1px 0 #E09600}
+.btn2{display:inline-block;border:none;cursor:pointer;background:#FFF3D1;color:#A8740A;font-weight:800;font-size:14px;padding:9px 18px;border-radius:12px;box-shadow:0 2px 0 #EAD9A8}
+.btn2:active{transform:translateY(2px);box-shadow:none}
+
+/* ---------- pastel tiles ---------- */
+.tileGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{border-radius:18px;padding:16px 14px;cursor:pointer;position:relative;overflow:hidden;min-height:86px}
+.tile .tt{font-size:17px;font-weight:900;margin-bottom:4px}
+.tile .ts{font-size:12px;color:#7A6F5C}
+.tile .ico{position:absolute;right:10px;bottom:8px;font-size:34px;opacity:.85}
+.tile.full{grid-column:1/3}
+.tileB{background:var(--blueBg)} .tileG{background:var(--greenBg)} .tileP{background:var(--pinkBg)}
+.tileO{background:var(--orangeBg)} .tileV{background:var(--purpleBg)}
+
+/* ---------- stat row ---------- */
+.statRow{display:flex;text-align:center;margin:6px 0 14px}
+.statRow>div{flex:1}
+.statRow .n{font-size:26px;font-weight:900}
+.statRow .l{font-size:12px;color:var(--muted);margin-top:2px}
+.dotG{color:var(--green)} .dotO{color:var(--orange)}
+
+/* ---------- search ---------- */
+.searchBar{display:flex;align-items:center;gap:8px;background:#fff;border-radius:22px;padding:11px 16px;box-shadow:0 4px 12px rgba(180,130,20,.12);margin-bottom:14px}
+.searchBar input{border:none;outline:none;flex:1;font-size:15px;background:transparent}
+.searchBar .sIco{color:var(--ydeep);font-size:18px}
+.wRow{display:flex;align-items:center;gap:10px;padding:11px 4px;border-bottom:1px solid #F4EDD9;cursor:pointer}
+.wRow:last-child{border-bottom:none}
+.wRow .ww{font-weight:800;font-size:16px}
+.wRow .wp{font-size:12px;color:var(--muted)}
+.wRow .wz{margin-left:auto;font-size:13px;color:#6E6350;text-align:right}
+
+/* ---------- pet ---------- */
+.petCard{text-align:center;position:relative}
+.lvChip{position:absolute;top:14px;left:14px;background:linear-gradient(180deg,#FFD54F,#FFB300);border-radius:14px;padding:6px 12px;font-weight:900;color:#5A3A00;box-shadow:0 2px 0 #E09600;z-index:2}
+.xpLine{display:flex;align-items:center;gap:10px;margin:6px 30px 0 96px;font-size:13px;font-weight:700;color:var(--ytext)}
+.xpBar{flex:1;height:8px;background:#F2E8CF;border-radius:5px;overflow:hidden}
+.xpBar i{display:block;height:100%;background:linear-gradient(90deg,#FFD54F,#FFB300)}
+.petTrack{position:relative;height:120px;margin:8px 4px 0;border-radius:16px;background:linear-gradient(180deg,#DFF3FF 0%,#FFF6D8 100%);overflow:hidden}
+.petImg{position:absolute;bottom:10px;left:4%;font-size:72px;line-height:1.2;cursor:pointer;filter:drop-shadow(0 6px 8px rgba(150,100,0,.2));animation:petRun 8s ease-in-out infinite;z-index:2}
+@keyframes petRun{
+  0%{left:4%;transform:scaleX(1) translateY(0)}
+  12%{transform:scaleX(1) translateY(-16px)}
+  24%{transform:scaleX(1) translateY(0)}
+  36%{transform:scaleX(1) translateY(-16px)}
+  46%{left:72%;transform:scaleX(1) translateY(0)}
+  50%{left:74%;transform:scaleX(-1) translateY(0)}
+  62%{transform:scaleX(-1) translateY(-16px)}
+  74%{transform:scaleX(-1) translateY(0)}
+  86%{transform:scaleX(-1) translateY(-16px)}
+  96%{left:4%;transform:scaleX(-1) translateY(0)}
+  100%{left:4%;transform:scaleX(1) translateY(0)}
+}
+.petImg.cute{animation:cuteAct 1.6s ease}
+@keyframes cuteAct{
+  0%{transform:scale(1) rotate(0)}
+  20%{transform:scale(1.25) rotate(-14deg) translateY(-10px)}
+  40%{transform:scale(1.25) rotate(14deg)}
+  60%{transform:scale(1.2) rotate(-10deg) translateY(-8px)}
+  80%{transform:scale(1.15) rotate(8deg)}
+  100%{transform:scale(1) rotate(0)}
+}
+.heartFx{position:absolute;font-size:20px;pointer-events:none;animation:heartUp 1.5s ease-out forwards;z-index:3}
+@keyframes heartUp{0%{opacity:0;transform:translateY(0) scale(.4)}20%{opacity:1}100%{opacity:0;transform:translateY(-80px) scale(1.3)}}
+
+/* ---------- SVG 宠物动画 ---------- */
+.petSvg{overflow:visible}
+.petSvg .eye{transform-box:fill-box;transform-origin:center;animation:blink 4.4s infinite}
+@keyframes blink{0%,91%,100%{transform:scaleY(1)}94.5%{transform:scaleY(.08)}}
+.petSvg .breathe{transform-box:fill-box;transform-origin:50% 100%;animation:breath 2.6s ease-in-out infinite}
+@keyframes breath{0%,100%{transform:scale(1,1)}50%{transform:scale(1.04,.96)}}
+.petSvg .wag{transform-box:fill-box;transform-origin:0% 80%;animation:wag 1.4s ease-in-out infinite}
+@keyframes wag{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(14deg)}}
+.petSvg .flap{transform-box:fill-box;transform-origin:60% 20%;animation:flap .9s ease-in-out infinite}
+@keyframes flap{0%,100%{transform:rotate(6deg)}50%{transform:rotate(-20deg)}}
+.petSvg .legL{animation:stepY .5s ease-in-out infinite}
+.petSvg .legR{animation:stepY .5s ease-in-out .25s infinite}
+@keyframes stepY{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.petSvg .floaty{animation:floaty 2.2s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.petSvg .bub{animation:bubUp 2.6s linear infinite;opacity:0}
+@keyframes bubUp{0%{opacity:0;transform:translateY(0)}15%{opacity:.85}100%{opacity:0;transform:translateY(-34px)}}
+
+/* ---------- 聊天句子点读 ---------- */
+.sent{cursor:pointer;border-radius:4px;padding:0 1px;transition:background .15s}
+.sent:hover{background:#FFF3D1}
+.sent.playing{background:#FFE9AE}
+.petName{font-weight:900;font-size:16px;margin-top:2px}
+.petBubble{position:relative;background:#fff;border:2px solid #F0E6CC;border-radius:16px;padding:10px 14px;margin:10px auto 4px;max-width:88%;font-size:14px;line-height:1.6;box-shadow:0 4px 10px rgba(180,130,20,.10)}
+.petBubble::before{content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(45deg);width:14px;height:14px;background:#fff;border-left:2px solid #F0E6CC;border-top:2px solid #F0E6CC}
+.petBubble .pSay{display:flex;align-items:center;gap:8px;justify-content:center}
+.petBubble .pSay button{border:none;background:#FFF0C4;border-radius:10px;font-size:16px;padding:4px 10px;cursor:pointer;flex:none}
+.petBtns{display:flex;gap:10px;justify-content:center;margin-top:12px}
+.taskRow{display:flex;align-items:center;gap:10px;border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.taskRow .no{width:24px;height:24px;border-radius:50%;color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+.taskRow .tinfo{flex:1;min-width:0}
+.taskRow .tname{font-weight:800;font-size:14px;margin-bottom:5px}
+.taskRow .tbar{height:7px;border-radius:4px;background:rgba(255,255,255,.7);overflow:hidden}
+.taskRow .tbar i{display:block;height:100%;border-radius:4px}
+.taskRow .txp{font-size:13px;font-weight:800;flex:none}
+.taskRow .tfood{font-size:22px;flex:none}
+.tkY{background:#FFF0C8} .tkY .no{background:#F0A500} .tkY .tbar i{background:#F5B301} .tkY .txp{color:#D88E00}
+.tkP{background:#FFE3EE} .tkP .no{background:#F56AA0} .tkP .tbar i{background:#F56AA0} .tkP .txp{color:#E14E8B}
+.tkB{background:#DDEBFF} .tkB .no{background:#4A86F0} .tkB .tbar i{background:#4A86F0} .tkB .txp{color:#2F6BD8}
+.petGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 14px}
+.petOpt{border:2.5px solid #EFE6CC;background:#FFFDF6;border-radius:16px;padding:12px 4px;text-align:center;cursor:pointer}
+.petOpt .pe{font-size:38px}
+.petOpt .pn{font-size:13px;font-weight:800;margin-top:4px}
+.petOpt.on{border-color:#F0B429;background:#FFF6DB;box-shadow:0 3px 10px rgba(224,150,0,.2)}
+/* 成长等级/经验副信息 */
+.xpSub{display:flex;justify-content:space-between;align-items:center;gap:6px;margin:8px 14px 0;font-size:12px;font-weight:800;color:#8A6100;flex-wrap:wrap}
+.xpSub .muted{font-weight:600;font-size:11px;color:#A99C80}
+/* 成长状态条 */
+.petStat{display:flex;gap:8px;margin:12px 10px 2px}
+.psItem{flex:1;background:#FFF7E6;border:1.5px solid #F0E6CC;border-radius:14px;padding:8px 4px;text-align:center}
+.psIco{font-size:18px;display:block;line-height:1.1}
+.psN{font-size:18px;font-weight:900;color:#8A6100;line-height:1.15}
+.psL{font-size:11px;color:#A99C80;margin-top:1px}
+/* 宠物图鉴 */
+.pbRow{background:#FFFDF6;border:1.5px solid #EFE6CC;border-radius:14px;padding:10px;margin-bottom:10px}
+.pbHead{font-size:14px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.pbCur{font-size:11px;background:#FFB300;color:#5A3A00;border-radius:8px;padding:1px 7px;font-weight:800}
+.pbStages{display:flex;gap:8px;justify-content:space-around}
+.pbStage{text-align:center;flex:1;background:#FFF7E6;border-radius:12px;padding:8px 2px;border:2px solid transparent}
+.pbStage.on{border-color:#F0B429;background:#FFF6DB;box-shadow:0 2px 8px rgba(224,150,0,.18)}
+.pbE{font-size:30px;display:block}
+.pbS{font-size:11px;color:#A99C80;margin-top:2px}
+
+/* ---------- tabbar ---------- */
+#tabbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;
+  background:rgba(255,255,255,.96);backdrop-filter:blur(8px);display:flex;padding:8px 6px 14px;
+  border-top:1px solid #F0E6CC;z-index:40}
+#tabbar .tab{flex:1;text-align:center;cursor:pointer;color:#A99C80}
+#tabbar .tab .ic{width:44px;height:30px;margin:0 auto;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:20px;transition:.2s}
+#tabbar .tab .lb{font-size:11px;font-weight:700;margin-top:2px}
+#tabbar .tab.on{color:#8A6100}
+#tabbar .tab.on .ic{background:linear-gradient(180deg,#FFD54F,#FFB300);box-shadow:0 3px 8px rgba(224,150,0,.35)}
+
+/* ---------- session overlay ---------- */
+#session{position:fixed;inset:0;z-index:60;background:linear-gradient(180deg,#FFB800 0,#FFCE4A 180px,#FFE9AE 340px,#FFF7E6 480px);overflow-y:auto;display:none}
+#session .wrap{max-width:520px;margin:0 auto;padding:16px 16px 40px;min-height:100%}
+.sHead{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sClose{width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.7);font-size:17px;cursor:pointer;font-weight:900;color:#8A6100}
+.sProg{flex:1;height:9px;background:rgba(255,255,255,.55);border-radius:6px;overflow:hidden}
+.sProg i{display:block;height:100%;background:#fff;border-radius:6px;transition:width .3s}
+.sCard{background:#fff;border-radius:22px;box-shadow:0 8px 24px rgba(160,110,10,.14);padding:26px 20px;text-align:center}
+.bigWord{font-size:38px;font-weight:900;letter-spacing:.5px}
+.phon{font-size:17px;color:var(--muted);margin:6px 0 2px}
+.zhBig{font-size:20px;font-weight:800;margin-top:10px}
+.optBtn{display:block;width:100%;margin:10px 0;border:2px solid #EFE6CC;background:#FFFDF6;border-radius:16px;padding:15px;font-size:17px;font-weight:800;cursor:pointer;color:var(--ink);text-align:left;padding-left:20px}
+.optBtn:active{transform:scale(.98)}
+.optBtn.right{border-color:#7CCB93;background:#EAF9EE;color:#2E9E4F}
+.optBtn.wrong{border-color:#F5A3A3;background:#FDECEC;color:#D64545}
+.optBtn:disabled{cursor:default}
+.spkBtn{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(180deg,#FFD54F,#FFB300);font-size:27px;box-shadow:0 4px 0 #E09600,0 8px 16px rgba(224,150,0,.3)}
+.spkBtn:active{transform:translateY(3px);box-shadow:0 1px 0 #E09600}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+.tileL{width:44px;height:52px;border-radius:10px;border:2px solid #EFE6CC;background:#FFFDF6;font-size:24px;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
+.tileL.sel{background:#FFF0C4;border-color:#F0B429;color:#8A6100}
+.answerLine{display:flex;gap:8px;justify-content:center;margin:14px 0;flex-wrap:wrap}
+.slot{width:38px;height:48px;border-bottom:3px solid #D8CBA4;font-size:26px;font-weight:900;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.slot.fill{border-color:#F0B429;color:#8A6100}
+.shake{animation:shk .4s}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.resStar{font-size:44px;letter-spacing:6px}
+.emmaBox{background:var(--purpleBg);border-radius:14px;padding:13px 15px;text-align:left;font-size:14px;line-height:1.6;margin-top:14px}
+.emmaBox b{color:#6B4BD8}
+
+/* ---------- bottom sheet ---------- */
+#sheetBk{position:fixed;inset:0;background:rgba(60,40,0,.35);z-index:70;display:none}
+#sheet{position:fixed;top:50%;left:50%;bottom:auto;transform:translate(-50%,-50%);width:calc(100% - 24px);max-width:520px;background:#fff;border-radius:24px;z-index:71;display:none;max-height:86vh;overflow-y:auto;padding:8px 20px 30px;isolation:isolate;box-shadow:0 18px 60px rgba(70,45,0,.28)}
+#sheet .grab{width:44px;height:5px;border-radius:3px;background:#E8DFC8;margin:8px auto 14px}
+#sheet h3{text-align:center;font-size:18px;margin:0 42px 14px}
+.sheetClose{position:absolute;right:14px;top:12px;width:34px;height:34px;border:0;border-radius:50%;background:#FFF4D5;color:#8B6500;font-size:25px;line-height:30px;font-weight:700;cursor:pointer;z-index:2}
+.sheetClose:hover{background:#FFD36A;color:#5B3B00}
+.sheetClose:active{transform:scale(.92)}
+.stepper{display:flex;align-items:center;justify-content:center;gap:22px;margin:18px 0}
+.stepper button{width:46px;height:46px;border-radius:50%;border:none;background:#FFF0C4;font-size:24px;font-weight:900;color:#B8860B;cursor:pointer;box-shadow:0 3px 0 #EAD9A8}
+.stepper button:active{transform:translateY(2px);box-shadow:none}
+.stepper .val{font-size:34px;font-weight:900;min-width:90px;text-align:center;color:#E67E00}
+.stepper .val small{font-size:14px;color:var(--muted);font-weight:400}
+.unitRow{display:flex;align-items:center;gap:12px;padding:13px 6px;border-bottom:1px solid #F4EDD9}
+.unitRow:last-child{border:none}
+.unitRow .uic{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+.unitRow .uname{flex:1;min-width:0}
+.unitRow .uname b{font-size:15px}
+.unitRow .uprog{font-size:12px;color:var(--muted);margin-top:3px}
+
+/* ---------- phonics / phoneme ---------- */
+.phGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.phCell{background:#FFFDF6;border:2px solid #EFE6CC;border-radius:14px;padding:12px 4px;text-align:center;cursor:pointer}
+.phCell .sym{font-size:21px;font-weight:900;color:#B8620B}
+.phCell .ex{font-size:11px;color:var(--muted);margin-top:4px}
+.ruleRow{background:#FFFDF6;border:1.5px solid #EFE6CC;border-radius:14px;padding:13px 15px;margin-bottom:10px}
+.ruleRow .rh{display:flex;align-items:center;gap:10px;cursor:pointer}
+.ruleRow .rp{font-weight:900;font-size:17px;color:#B8620B;min-width:64px}
+.ruleRow .rn{flex:1;font-size:14px;font-weight:700}
+.ruleRow .rbody{margin-top:10px;display:none}
+.ruleRow.open .rbody{display:block}
+.exWord{display:inline-block;background:#FFF0C4;border-radius:10px;padding:5px 12px;margin:4px 6px 0 0;font-weight:800;font-size:14px;cursor:pointer;color:#8A6100}
+.exWord.bank{background:#DDEBFF;color:#2F6BD8}
+
+/* ---------- chat ---------- */
+.chatArea{height:44vh;overflow-y:auto;background:#FBF7EC;border-radius:16px;padding:14px;margin-bottom:12px}
+.bub{max-width:88%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.7;margin-bottom:10px;white-space:pre-wrap;word-break:break-word}
+.bubAi{background:#fff;box-shadow:0 2px 6px rgba(180,130,20,.08);border-top-left-radius:4px}
+.bubMe{background:linear-gradient(180deg,#FFD54F,#FFB300);margin-left:auto;color:#5A3A00;border-top-right-radius:4px}
+.chatInRow{display:flex;gap:8px}
+.chatInRow input{flex:1;border:2px solid #EFE6CC;border-radius:14px;padding:11px 14px;font-size:15px;outline:none;background:#fff}
+.chatSend{border:none;border-radius:14px;padding:0 18px;background:linear-gradient(180deg,#FFD54F,#FFB300);font-weight:900;color:#5A3A00;font-size:15px;cursor:pointer;box-shadow:0 3px 0 #E09600}
+.chatSend:active{transform:translateY(2px);box-shadow:none}
+.chatMic{border:none;border-radius:14px;padding:0 14px;background:#FFE9F2;font-size:19px;cursor:pointer}
+.spin{display:inline-block;animation:spn 1s linear infinite}
+@keyframes spn{to{transform:rotate(360deg)}}
+
+/* ---------- form ---------- */
+.fRow{margin-bottom:14px}
+.fRow label{display:block;font-size:13px;font-weight:800;margin-bottom:6px;color:var(--ytext)}
+.fRow input{width:100%;border:2px solid #EFE6CC;border-radius:12px;padding:11px 14px;font-size:15px;outline:none;background:#FFFDF6}
+
+/* ---------- 档案门（家庭多账号） ---------- */
+#gate{position:fixed;inset:0;z-index:90;display:none;overflow-y:auto;
+  background:linear-gradient(180deg,#FFB800 0,#FFCE4A 220px,#FFE9AE 400px,#FFF7E6 560px)}
+#gate .gwrap{max-width:640px;margin:0 auto;padding:46px 20px 60px;text-align:center;min-height:100%}
+#gate .glogo{font-size:58px;filter:drop-shadow(0 4px 6px rgba(150,100,0,.25))}
+#gate h2{font-size:27px;font-weight:900;margin:10px 0 4px}
+#gate .gsub{color:#7A6A45;font-size:14px;margin-bottom:26px}
+.profGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,220px));justify-content:center;gap:14px}
+.profCard{background:#fff;border-radius:22px;padding:20px 12px;cursor:pointer;position:relative;
+  box-shadow:0 6px 16px rgba(180,130,20,.14);transition:.15s}
+.profCard:active{transform:scale(.96)}
+.profCard .av{font-size:50px;line-height:1.2}
+.profCard .nm{font-weight:900;font-size:16px;margin-top:8px}
+.profCard .lk{position:absolute;top:10px;right:12px;font-size:14px;opacity:.65}
+#gate .gmanage{margin-top:28px;background:rgba(255,255,255,.6);border:none;border-radius:16px;padding:12px 24px;font-weight:800;color:#8A6100;cursor:pointer;font-size:14px}
+#gate .gmanage:active{transform:translateY(2px)}
+#gate .gtip{margin-top:20px;font-size:12px;color:#8A7452;line-height:1.8}
+
+/* 档案弹层（PIN / 家长管理） */
+#gateSheet{position:fixed;inset:0;z-index:95;display:none;background:rgba(60,40,0,.45)}
+#gateSheet .gsBox{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:430px;
+  background:#fff;border-radius:24px;padding:22px 20px 24px;box-shadow:0 20px 60px rgba(70,45,0,.3);max-height:86vh;overflow-y:auto}
+#gateSheet .gsBox h3{text-align:center;font-size:18px;margin-bottom:6px}
+.pinDots{display:flex;justify-content:center;gap:14px;margin:18px 0 20px}
+.pinDots i{width:16px;height:16px;border-radius:50%;background:#F0E6CC;display:block}
+.pinDots i.on{background:#FFB300}
+.pinKeys{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:264px;margin:0 auto}
+.pinKeys button{height:56px;border:none;border-radius:16px;font-size:22px;font-weight:900;background:#FFF7E6;color:#7A5A00;cursor:pointer;box-shadow:0 3px 0 #EAD9A8}
+.pinKeys button:active{transform:translateY(2px);box-shadow:none}
+.pinErr{color:#D64545;text-align:center;font-size:13px;font-weight:700;height:18px;margin-top:12px}
+
+/* ---------- 云端同步 ---------- */
+.cbRow{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700}
+.cbDot{width:9px;height:9px;border-radius:50%;background:#C9BFA6;flex:none;display:inline-block}
+.cbDot.on{background:#4CC36A;box-shadow:0 0 0 3px rgba(76,195,106,.18)}
+.cbDot.off{background:#E0A63B}
+.cbDot.err{background:#D64545}
+.pwWrap{position:relative}
+.pwWrap input{padding-right:46px}
+.pwWrap .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:none;background:transparent;font-size:18px;cursor:pointer;padding:6px;line-height:1}
+#gate .gcloud{margin-top:18px;background:rgba(255,255,255,.78);border-radius:16px;padding:13px 15px;text-align:left}
+#gate .gcloud .cbBtns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+#gate .gcloud .cbBtns button{flex:1;min-width:104px}
+
+/* ---------- toast ---------- */
+#toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:rgba(50,35,5,.88);color:#FFE9A8;padding:11px 22px;border-radius:24px;font-size:14px;font-weight:700;z-index:99;display:none;max-width:86%;text-align:center}
+.tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:8px;margin-left:6px;vertical-align:2px}
+.tagW{background:#FDECEC;color:#D64545}
+.tagF{background:#DDEBFF;color:#2F6BD8}
+.xpPop{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);font-size:34px;font-weight:900;color:#FF9F2E;text-shadow:0 2px 8px rgba(255,160,0,.4);z-index:99;animation:xpup 1.2s forwards;pointer-events:none}
+@keyframes xpup{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}100%{opacity:0;transform:translate(-50%,-120%) scale(1)}}
+.confetti{position:fixed;font-size:26px;z-index:98;animation:cfall 2.2s ease-in forwards;pointer-events:none}
+@keyframes cfall{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(105vh) rotate(540deg);opacity:.4}}
+
+/* ---------- 键盘提示（仅大屏显示） ---------- */
+.kbHint{display:none}
+.dayList{break-inside:avoid;margin-top:8px}
+
+/* ---------- 鼠标悬停反馈 ---------- */
+@media(hover:hover) and (pointer:fine){
+  .tile:hover{filter:brightness(.97);transform:translateY(-2px);box-shadow:0 6px 14px rgba(180,130,20,.14);transition:.15s}
+  .optBtn:hover:not(:disabled){border-color:#F0B429;background:#FFF9E6}
+  .btn3d:hover{filter:brightness(1.05)}
+  .btn2:hover{filter:brightness(.96)}
+  .exWord:hover{filter:brightness(.94)}
+  .phCell:hover{border-color:#F0B429}
+  .wRow:hover{background:#FFF9E6;border-radius:8px}
+  .todayBtn:hover{filter:brightness(1.03)}
+  .petOpt:hover{border-color:#F0B429}
+}
+
+/* ---------- 手机（<600px）—— 所有基础样式见上 ---------- */
+
+/* ---------- iPad 适配 ---------- */
+@media(min-width:600px){
+  body{font-size:16px}
+  #page{max-width:660px;padding:0 22px 112px}
+  #tabbar{max-width:660px;border-radius:22px 22px 0 0}
+  #session .wrap{max-width:660px;padding:20px 22px 48px}
+  #sheet{max-width:660px}
+  .topbar .ttl{font-size:28px}
+  .card{padding:20px;border-radius:24px}
+  .bigWord{font-size:46px}
+  .phon{font-size:21px}
+  .zhBig{font-size:23px}
+  .tileL{width:54px;height:64px;font-size:30px}
+  .slot{width:48px;height:60px;font-size:32px}
+  .spkBtn{width:82px;height:82px;font-size:34px}
+  .petImg{font-size:96px}
+  .petTrack{height:148px}
+  .todayCard .cnt{font-size:32px}
+  .todayBtn{font-size:18px;padding:11px 0}
+  .btn3d{font-size:18px;padding:16px 0}
+  .optBtn{font-size:18px;padding:17px 15px 17px 22px}
+  .chatArea{height:50vh}
+  .cover{width:96px;height:128px}
+  .cover .cb2{font-size:30px}
+  .cover .cbig{font-size:60px}
+  .wRow{font-size:15px}
+  .statRow .n{font-size:28px}
+}
+
+/* ---------- 电脑 / iPad 横屏 ---------- */
+@media(min-width:900px){
+  body{font-size:16px}
+  #page{max-width:1120px;column-count:2;column-gap:28px;padding:0 28px 130px}
+  #page>*{break-inside:avoid-column;margin-bottom:16px}
+  .topbar,.secT,.dayList{column-span:all;margin-bottom:0}
+  .card{break-inside:avoid-column;padding:22px;border-radius:26px;margin-bottom:14px}
+  .dayRow{break-inside:avoid-column}
+  .todayGrid{break-inside:avoid-column}
+  .tileGrid{break-inside:avoid-column}
+  .statRow{break-inside:avoid-column}
+  .petCard{break-inside:avoid-column}
+  .bookCard{break-inside:avoid-column}
+  #tabbar{max-width:1120px;border-radius:24px 24px 0 0}
+  #tabbar .tab .ic{width:52px;height:34px;font-size:22px}
+  #session .wrap{max-width:800px;padding:24px 28px 56px}
+  #sheet{max-width:800px;border-radius:28px}
+  .topbar .ttl{font-size:30px}
+  .chatArea{height:58vh}
+  .kbHint{display:block}
+  .phGrid{grid-template-columns:repeat(6,1fr)}
+  .petImg{font-size:108px}
+  .petTrack{height:162px}
+  .cover{width:108px;height:144px}
+  .cover .cb2{font-size:34px}
+  .cover .cbig{font-size:68px}
+  .todayCard .cnt{font-size:34px}
+}
+</style>
+</head>
+<body data-page-node-id="m4fjEGSrzPZA8ypp3uukqr">
+<div id="page" data-page-node-id="wDmi4prEj79pTUFP7YRVFg"></div>
+<nav id="tabbar" data-page-node-id="okQrGCXhWrUcp63BaDBmI6"></nav>
+
+<div id="session" data-page-node-id="XshYsCDv3VjB4w2bfNE2Ai"><div class="wrap" id="sessionWrap" data-page-node-id="6x7dmBEw0niuI0wMgKwgHM"></div></div>
+<div id="sheetBk" onclick="closeSheet()" data-page-node-id="85QQLVKTA8B8YZ9vaEW1F8"></div>
+<div id="sheet" data-page-node-id="YHSR9dmkzQpWQcvjaIGe0T"></div>
+<div id="gate"></div>
+<div id="gateSheet"></div>
+<div id="toast" data-page-node-id="da0LLDtoFZN6JVzKqj1c3d"></div>
+
+<script src="words-data.js"></script>
+<script>
+/* ==================== 教材库 ==================== */
+const BOOKS = window.WORD_BOOKS || (window.WORD_DATA?{"6A":window.WORD_DATA}:null);
+/* 词库是否就位：words-data.js 没上传/路径不对时，这里为 false。
+   后续所有入口都要先看这个标志，避免用户看到「界面正常但点了没反应」。 */
+const WORDS_OK = !!(BOOKS && Object.keys(BOOKS).length);
+const BOOK_ORDER=["6A","6B","7A","7B","8A","8B","9A","9B"];
+const BOOK_META={
+  "6A":{title:"六年级上册",cover:"六年级 上册"},
+  "6B":{title:"六年级下册",cover:"六年级 下册"},
+  "7A":{title:"七年级上册",cover:"七年级 上册"},
+  "7B":{title:"七年级下册",cover:"七年级 下册"},
+  "8A":{title:"八年级上册",cover:"八年级 上册"},
+  "8B":{title:"八年级下册",cover:"八年级 下册"},
+  "9A":{title:"九年级上册",cover:"九年级 上册"},
+  "9B":{title:"九年级下册",cover:"九年级 下册"}
+};
+const UICON_POOL=["🏫","👨‍👩‍👧","🍎","⚽","🦁","🗺️","🌈","🚀","🎭","🌍","📚","🎵","🌟","🎨"];
+const UBG_POOL=["var(--blueBg)","var(--greenBg)","var(--pinkBg)","var(--orangeBg)","var(--purpleBg)"];
+const bookAvail=id=>!!(BOOKS&&BOOKS[id]&&BOOKS[id].units&&BOOKS[id].units.length);
+const curBookData=()=>{ if(!BOOKS)return null; return BOOKS[S.book]||BOOKS[BOOK_ORDER.find(bookAvail)]; };
+const unitIcon=(u,i)=>UICON_POOL[i%UICON_POOL.length];
+const unitBg=(u,i)=>UBG_POOL[i%UBG_POOL.length];
+
+/* ==================== state（家庭多档案） ==================== */
+const todayStr0=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const HUB_KEY="emmaHub", DATA_PREFIX="emmaData_";
+const AVATARS=["👧","👦","🧒","🐰","🐻","🦊","🐯","🐼"];
+let HUB=null, S=null, curPid=null;
+
+function saveHub(){ localStorage.setItem(HUB_KEY,JSON.stringify(HUB)); }
+function loadHub(){
+  try{ HUB=JSON.parse(localStorage.getItem(HUB_KEY)||"null"); }catch(e){ HUB=null; }
+  if(HUB&&HUB.profiles&&HUB.profiles.length){ if(!HUB.seq)HUB.seq=HUB.profiles.length; return; }
+  // 首次运行：把旧的单档案 emmaW2 迁移为第一个孩子档案
+  HUB={profiles:[],parentPin:"",seq:1};
+  let old=null; try{ old=JSON.parse(localStorage.getItem("emmaW2")||"null"); }catch(e){}
+  HUB.profiles.push({id:"p1",name:"EMMA",avatar:"👧",pin:""});
+  if(old)localStorage.setItem(DATA_PREFIX+"p1",JSON.stringify(old));
+  saveHub();
+}
+const profileById=id=>HUB.profiles.find(p=>p.id===id);
+function newProfileId(){ HUB.seq=(HUB.seq||1)+1; return "p"+HUB.seq; }
+function loadProfileData(id){ let d=null; try{ d=JSON.parse(localStorage.getItem(DATA_PREFIX+id)||"null"); }catch(e){} return d||{xp:0,minutes:{}}; }
+function normalizeState(){
+  if(!S)S={xp:0,minutes:{}};
+  if(!S.book||!bookAvail(S.book))S.book=BOOK_ORDER.find(bookAvail)||"6A";
+  if(!S.books)S.books={};
+  if(S.words){ S.books["6A"]={plan:S.plan||{dailyNew:6,startDate:todayStr0()},words:S.words,claimed:S.claimed||{}}; delete S.words; delete S.plan; delete S.claimed; }
+  if(!S.pet)S.pet={type:"dog",name:"Lucky"};
+  if(!S.checkin)S.checkin={date:"",streak:0};
+  if(!S.tts)S.tts={on:true,model:"stepaudio-2.5-tts",voice:"lively-girl"};
+  // 数据迁移：旧版 voice 默认值 "default" 在阶跃网关会返回 HTTP 400，统一纠正为 lively-girl
+  else if(S.tts.voice==="default"||!S.tts.voice){S.tts.voice="lively-girl";}
+  if(curPid)save();   // 改动4b：迁移后立即落盘，否则 iPad 下次仍会读旧值继续 400
+  if(S.ttsAuto===undefined)S.ttsAuto=true;
+  if(!S.ai)S.ai={base:"https://engine.atomclub.cn/v1",model:"deepseek-v3.2",key:""};
+  // 云端同步可能带来不含密钥的 ai 对象（密钥绝不入云），这里补齐字段
+  if(S.ai.key===undefined)S.ai.key="";
+  if(!S.ai.base)S.ai.base="https://engine.atomclub.cn/v1";
+  if(!S.ai.model)S.ai.model="deepseek-v3.2";
+  if(!S._updated)S._updated=Date.now();
+}
+const BS=()=>{ if(!S.books[S.book])S.books[S.book]={plan:{dailyNew:6,startDate:todayStr0()},words:{},claimed:{}}; return S.books[S.book]; };
+function save(){
+  if(S&&curPid)localStorage.setItem(DATA_PREFIX+curPid,JSON.stringify(S));
+  schedulePush();   // 本地写入永远立即生效；云端推送做 4 秒防抖（见「云端同步」段）
+}
+
+/* ==================== 词表工具 ==================== */
+let ALL=[],byId={};
+const widOf=w=>w.unit+":"+w.w;
+function loadBookWords(){
+  ALL=[];byId={};
+  const bd=curBookData(); if(!bd)return;
+  bd.units.forEach((u,i)=>u.words.forEach(w=>ALL.push({w:w.w,ph:w.ph||w.ipa||"",pos:w.pos||"",zh:w.zh,emma:w.emma||"",unit:u.id,unitTitle:u.title,uidx:i})));
+  ALL.forEach(w=>byId[widOf(w)]=w);
+}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const todayStr=todayStr0;
+const addDays=(ds,n)=>{const d=new Date(ds+"T12:00:00");d.setDate(d.getDate()+n);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const INT=[1,2,4,7,15,30];
+
+const recOf=(id,create)=>{ const ws=BS().words; if(!ws[id]&&create)ws[id]={learned:false,box:0,due:todayStr(),wrong:0,fav:false,ok:0}; return ws[id]; };
+const learnedList=()=>ALL.filter(w=>{const r=BS().words[widOf(w)];return r&&r.learned});
+const masteredList=()=>ALL.filter(w=>{const r=BS().words[widOf(w)];return r&&r.learned&&r.box>=3});
+const newBatch=()=>ALL.filter(w=>{const r=BS().words[widOf(w)];return !(r&&r.learned)}).slice(0,BS().plan.dailyNew);
+const reviewBatch=()=>ALL.filter(w=>{const r=BS().words[widOf(w)];return r&&r.learned&&r.due<=todayStr()});
+const wrongList=()=>ALL.filter(w=>{const r=BS().words[widOf(w)];return r&&r.learned&&r.wrong>0&&r.box<2});
+const favList=()=>ALL.filter(w=>{const r=BS().words[widOf(w)];return r&&r.fav});
+function dayIdx(){ const a=new Date(BS().plan.startDate+"T12:00:00"),b=new Date(todayStr()+"T12:00:00"); return Math.max(0,Math.floor((b-a)/86400000)); }
+function newDoneToday(){ return BS().claimed["new:"+todayStr()+"_cnt"]||0; }
+function revDoneToday(){ return BS().claimed["rev:"+todayStr()+"_cnt"]||0; }
+function minutesToday(){ return Math.round(S.minutes[todayStr()]||0); }
+function level(){ return Math.floor(S.xp/100)+1; }
+
+/* ==================== 宠物系统 ==================== */
+const PET_TYPES={
+  dog:{name:"小狗",stages:["🐶","🐕","🦮"],cry:"Woof!"},
+  cat:{name:"小猫",stages:["🐱","🐈","😸"],cry:"Meow!"},
+  fish:{name:"小鱼",stages:["🐟","🐠","🐡"],cry:"Blub!"},
+  bird:{name:"小鸟",stages:["🐣","🐥","🦅"],cry:"Tweet!"},
+  dino:{name:"小恐龙",stages:["🥚","🦖","🦕"],cry:"Roar!"},
+  pig:{name:"小猪",stages:["🐷","🐽","🐖"],cry:"Oink!"}
+};
+function petEmoji(){ const t=PET_TYPES[S.pet.type]||PET_TYPES.dog; return t.stages[Math.min(Math.floor((level()-1)/2),t.stages.length-1)]; }
+function petCry(){ return (PET_TYPES[S.pet.type]||PET_TYPES.dog).cry; }
+function petRank(){ const lv=level();
+  if(lv>=15)return {t:"英语博士",e:"👑"};
+  if(lv>=10)return {t:"小学霸",e:"🏆"};
+  if(lv>=6)return {t:"小书虫",e:"📚"};
+  if(lv>=3)return {t:"小学徒",e:"🌱"};
+  return {t:"萌新",e:"🐣"};
+}
+const PET_GREET=[
+  "Hi EMMA! I'm {name}! {cry}",
+  "Good to see you! Let's learn English!",
+  "Ready to study with me? {cry}",
+  "Hello! I missed you so much!",
+  "One word a day, keeps the boredom away!"
+];
+const PET_PRAISE=[
+  "Great job, EMMA! You are amazing!",
+  "Wow! You did it! I'm so proud of you!",
+  "Yummy! Your words are my favorite food!",
+  "Super! You make me smarter too!",
+  "High five! You are a superstar!"
+];
+const PET_HUNGRY=[
+  "I'm hungry… Feed me some words! {cry}",
+  "Can we learn one more word? Please?",
+  "Words, words, I need words! {cry}"
+];
+function petSay(line){ S.petLine=line; save(); }
+function petGreet(){
+  const h=new Date().getHours();
+  let line;
+  if(h<9)line="Good morning, EMMA! A new day, new words!";
+  else if(h<14)line="Good afternoon! Ready for some English?";
+  else if(h<20)line="Good evening! Let's study together!";
+  else line="Wow, still studying? You are a hard worker!";
+  petSay(petCry()+" "+line);
+}
+function petPraise(){ petSay(petCry()+" "+PET_PRAISE[Math.floor(Math.random()*PET_PRAISE.length)]); }
+function petSpeakLine(){ if(S.petLine)speakSmart(S.petLine.replace(/[🐶🐱🐟🐣🥚🐷⭐🐾💕💖💗✨]/g,""),1.0,petPitch()); }
+
+/* ---------- SVG 宠物造型（灵动版） ---------- */
+const FACE=(cy,mouth)=>`
+ <g class="eye"><circle cx="49" cy="${cy}" r="4.4" fill="#3A2E1A"/><circle cx="50.6" cy="${cy-1.6}" r="1.5" fill="#fff"/></g>
+ <g class="eye"><circle cx="71" cy="${cy}" r="4.4" fill="#3A2E1A"/><circle cx="72.6" cy="${cy-1.6}" r="1.5" fill="#fff"/></g>
+ <ellipse cx="41" cy="${cy+8}" rx="4.6" ry="2.8" fill="#FF9FB0" opacity=".55"/>
+ <ellipse cx="79" cy="${cy+8}" rx="4.6" ry="2.8" fill="#FF9FB0" opacity=".55"/>
+ ${mouth?`<path d="M54 ${cy+8} Q60 ${cy+13} 66 ${cy+8}" stroke="#3A2E1A" stroke-width="2.2" fill="none" stroke-linecap="round"/>`:""}`;
+const LEGS=c=>`<ellipse class="legL" cx="48" cy="90" rx="9" ry="4.6" fill="${c}"/><ellipse class="legR" cx="72" cy="90" rx="9" ry="4.6" fill="${c}"/>`;
+const CROWN=`<g transform="translate(8,-8) rotate(12 60 22)"><path d="M48 26 l5 -10 7 7 7 -7 5 10 Z" fill="#FFD54F" stroke="#E8A200" stroke-width="1.6" stroke-linejoin="round"/></g>`;
+const PET_ART={
+ dog:`<path class="wag" d="M88 66 Q104 60 106 46" stroke="#C98B4E" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="33" cy="42" rx="9" ry="17" fill="#B87B42" transform="rotate(16 33 42)"/>
+  <ellipse cx="87" cy="42" rx="9" ry="17" fill="#B87B42" transform="rotate(-16 87 42)"/>
+  <g class="breathe">
+   <ellipse cx="60" cy="64" rx="32" ry="27" fill="#D9A066"/>
+   ${FACE(50,false)}
+   <ellipse cx="60" cy="66" rx="15" ry="11" fill="#F2D7B6"/>
+   <circle cx="60" cy="62" r="4" fill="#6B4A2E"/>
+   <path d="M56 70 Q60 75 64 70" stroke="#6B4A2E" stroke-width="2" fill="none" stroke-linecap="round"/>
+   <path d="M58 73 Q60 82 62 73 Z" fill="#FF8FA0"/>
+  </g>${LEGS("#C98B4E")}`,
+ cat:`<path class="wag" d="M88 66 Q110 60 106 38" stroke="#F6A94D" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M36 40 L42 16 L58 36 Z" fill="#F6A94D"/><path d="M84 40 L78 16 L62 36 Z" fill="#F6A94D"/>
+  <path d="M41 36 L44.5 24 L53 33 Z" fill="#FFC7D1"/><path d="M79 36 L75.5 24 L67 33 Z" fill="#FFC7D1"/>
+  <g class="breathe">
+   <ellipse cx="60" cy="64" rx="32" ry="27" fill="#F6A94D"/>
+   <path d="M48 39 l3.5 6 M60 36.5 v7 M72 39 l-3.5 6" stroke="#E08A2E" stroke-width="2.4" stroke-linecap="round"/>
+   ${FACE(54,true)}
+   <g stroke="#E08A2E" stroke-width="1.6" stroke-linecap="round"><path d="M32 60 h-13 M33 66 l-12 4 M88 60 h13 M87 66 l12 4"/></g>
+  </g>${LEGS("#E8943C")}`,
+ fish:`<g class="floaty">
+  <path class="wag" d="M30 60 L12 44 L14 76 Z" fill="#4E97DE"/>
+  <ellipse cx="62" cy="60" rx="34" ry="24" fill="#6FB7F2"/>
+  <path d="M52 38 Q61 27 71 38 Z" fill="#4E97DE"/>
+  <path d="M50 50 q9 8 0 16 M64 48 q9 10 0 20" stroke="#4E97DE" stroke-width="2" fill="none" opacity=".7"/>
+  <g class="eye"><circle cx="77" cy="53" r="5" fill="#3A2E1A"/><circle cx="78.8" cy="51.4" r="1.7" fill="#fff"/></g>
+  <ellipse cx="88" cy="64" rx="5" ry="3.4" fill="#FF9FB0" opacity=".6"/>
+  <path d="M90 57 q7 4 0 8" stroke="#3A2E1A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+ </g>
+ <circle class="bub" cx="98" cy="34" r="3" fill="#A9D9FF"/><circle class="bub" cx="106" cy="44" r="2.2" fill="#A9D9FF" style="animation-delay:1s"/>`,
+ bird:`<path d="M52 88 v9 M68 88 v9" stroke="#E8963C" stroke-width="3.4" stroke-linecap="round"/>
+  <path class="wag" d="M86 66 Q102 62 106 52" stroke="#EFB93A" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <g class="breathe">
+   <ellipse cx="60" cy="62" rx="28" ry="26" fill="#F7CE46"/>
+   <ellipse class="flap" cx="36" cy="62" rx="9" ry="16" fill="#EFB93A"/>
+   <path d="M55 36 q5 -11 10 0" stroke="#EFB93A" stroke-width="4.4" fill="none" stroke-linecap="round"/>
+   <ellipse cx="60" cy="74" rx="14" ry="10" fill="#FFF3C4"/>
+   ${FACE(50,false)}
+   <path d="M60 56 L51 62 L60 68 L69 62 Z" fill="#F08C2E"/>
+  </g>`,
+ dino:`<path class="wag" d="M86 70 Q110 74 114 58" stroke="#6FAF4C" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <g class="breathe">
+   <path d="M44 42 l6 -13 6 13 Z M58 38 l6 -13 6 13 Z M72 42 l6 -13 6 13 Z" fill="#5C9E40"/>
+   <ellipse cx="60" cy="64" rx="33" ry="27" fill="#83C25E"/>
+   <path d="M40 70 q-9 4 -7 11 M80 70 q9 4 7 11" stroke="#6FAF4C" stroke-width="5" fill="none" stroke-linecap="round"/>
+   <ellipse cx="60" cy="76" rx="18" ry="11" fill="#CDE8B4"/>
+   ${FACE(52,false)}
+   <circle cx="55" cy="64" r="1.6" fill="#4A7A33"/><circle cx="65" cy="64" r="1.6" fill="#4A7A33"/>
+   <path d="M48 68 Q60 78 72 68" stroke="#3A2E1A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  </g>${LEGS("#6FAF4C")}`,
+ pig:`<path class="wag" d="M88 68 q11 -1 10 -11 q-1 -8 -9 -6" stroke="#EE8FA6" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M40 40 Q34 24 50 29 Q47 40 43 45 Z" fill="#EE8FA6"/>
+  <path d="M80 40 Q86 24 70 29 Q73 40 77 45 Z" fill="#EE8FA6"/>
+  <g class="breathe">
+   <ellipse cx="60" cy="64" rx="32" ry="27" fill="#F4A8BC"/>
+   ${FACE(50,false)}
+   <ellipse cx="60" cy="67" rx="11" ry="8.4" fill="#FBC7D3"/>
+   <ellipse cx="56" cy="67" rx="2" ry="3.2" fill="#C96B82"/><ellipse cx="64" cy="67" rx="2" ry="3.2" fill="#C96B82"/>
+  </g>${LEGS("#EE8FA6")}`
+};
+function petSVG(){
+  const stage=Math.min(Math.floor((level()-1)/2),2);
+  const size=[88,102,116][stage];
+  return `<svg viewBox="0 0 120 104" width="${size}" height="${Math.round(size*104/120)}" class="petSvg">${stage>=2?CROWN:""}${PET_ART[S.pet.type]||PET_ART.dog}</svg>`;
+}
+
+/* ==================== 鼓励语音 ==================== */
+const PRAISES=["Great job!","Well done!","Excellent!","Perfect!","Brilliant!","You're amazing!","Super!","Fantastic!","Way to go!","You're so smart!"];
+const CHEERS=["Try again!","You can do it!","Don't give up!","Almost there!"];
+function speakPraise(){ speak(PRAISES[Math.floor(Math.random()*PRAISES.length)],1.05); }
+function speakCheer(){ speak(CHEERS[Math.floor(Math.random()*CHEERS.length)],1.05); }
+
+/* ==================== speech（本地 + 云端TTS） ==================== */
+let voiceEn=null, voiceZh=null;
+let voiceTries=0;
+function pickVoice(){
+  const vs=speechSynthesis.getVoices();
+  if(!vs||!vs.length){
+    // 安卓上语音列表常常是异步就绪的，首次读到空要重试几次
+    if(voiceTries<6){ voiceTries++; setTimeout(function(){ if("speechSynthesis" in window)pickVoice(); },500); }
+    return;
+  }
+  voiceEn=vs.find(v=>/en-GB/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null;
+  voiceZh=vs.find(v=>/zh-CN/i.test(v.lang))||vs.find(v=>/^zh/i.test(v.lang))||null;
+  voiceTries=0;   // 已成功拿到音色列表，允许之后再次被触发（如重新检测）
+}
+if("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+
+/* 改动1c：iOS 在首次用户交互前 getVoices() 常返回空数组、且 onvoiceschanged 不可靠触发，
+   故在第一次 pointerdown/touchend/click 时再补探一次（一次性回调）。
+   做存在性保护，避免假 DOM 测试台缺少 document 时抛错。 */
+if(typeof document!=="undefined"&&document.addEventListener){
+  const onceDetect=function(){ try{ if("speechSynthesis" in window) pickVoice(); }catch(e){} };
+  document.addEventListener("pointerdown",onceDetect,{once:true});
+  document.addEventListener("touchend",onceDetect,{once:true});
+  document.addEventListener("click",onceDetect,{once:true});
+}
+
+/* 改动1d：手动重新检测英文音色（供「AI 接口设置」弹层按钮调用），必须定义在全局作用域 */
+function redetectVoice(){
+  voiceTries=0; pickVoice();
+  toast(voiceEn
+    ? ("已识别英文音色："+voiceEn.name+"（"+voiceEn.lang+"）")
+    : "仍未识别到英文音色，请在 iPad「设置→辅助功能→朗读内容→声音」中确认已下载英语语音");
+  // 若当前正开着「AI 接口设置」弹层，重绘以刷新诊断行
+  try{
+    const sh=(document.getElementById&&document.getElementById("sheet"));
+    if(sh&&/AI 接口设置/.test(sh.innerHTML)) sheetAISet();
+  }catch(e){}
+}
+
+/* 听不到声音时，必须让用户知道「为什么」——静默失败最难排查。
+   常见两类原因：① 本机没有可用的系统语音（安卓尤其常见）
+                ② 没填 AI 接口 Key，云端朗读也没走通 */
+let noVoiceWarned=false;
+function warnNoVoice(html){
+  openSheet('<div style="font-size:14px;line-height:1.95;text-align:left">'+html+'</div>'+
+    '<div style="height:16px"></div><button class="btn3d" onclick="closeSheet()">知道了</button>');
+}
+function checkVoiceOnce(cloudTried){
+  if(noVoiceWarned)return;
+  const hasSS=("speechSynthesis" in window);
+  let haveLocal=false;
+  if(hasSS){ pickVoice(); haveLocal=!!(voiceEn||voiceZh); }
+  if(haveLocal)return;                      // 有可用系统音色 → 朗读正常，不打扰用户
+  noVoiceWarned=true;
+  const hasKey=!!(S&&S.ai&&S.ai.key);
+  let msg;
+  // 判定优先级：先说「能动手改的那一条」，别丢一句「换个浏览器」就完事
+  if(cloudTried&&hasKey){
+    msg='朗读没有出声，问题出在<b>云端朗读</b>这条路上：Key 不正确，或当前网络访问不到 <code>engine.atomclub.cn</code>。'+
+        '<div style="height:8px"></div>同时本机'+(hasSS?'<b>没有可用的系统语音包</b>':'<b>浏览器不支持系统语音</b>')+'，所以也无法本地兜底。'+
+        '<div style="height:10px"></div>建议：到「我的 → 🤖 AI 接口设置」重新保存一次，那里会显示接口测试结果。';
+  }else if(!hasKey){
+    msg='听不到声音是两件事叠加：<div style="height:6px"></div>'+
+        '① <b>AI 接口 Key 还没填</b>，云端朗读不会启动<br>'+
+        '② '+(hasSS?'本机<b>没有可用的系统语音包</b>（安卓很常见）':'这个浏览器<b>不支持系统语音</b>')+'，本地也读不出'+
+        '<div style="height:10px"></div><b>最快的办法：填 Key，用云端朗读</b>（音色也更好听）<br>'+
+        '「我的 → 🤖 AI 接口设置」→ 填入 Key → 保存'+
+        (hasSS
+          ? '<div style="height:8px"></div>或者装系统语音包：<br>设置 → 系统 → 语言和输入法 → 文字转语音 → 安装英文语音数据'
+          : '<div style="height:8px"></div>若想用本地朗读，需改用 Chrome / Safari / Edge 打开本页面');
+  }else if(!hasSS){
+    msg='这个浏览器不支持语音朗读，而云端朗读这次也没成功。<br>请改用 <b>Chrome / Safari / Edge</b> 打开本页面。';
+  }else{
+    msg='本机没有可用的系统语音，朗读无法出声。<br>请安装系统语音包，或检查云端朗读是否正常。';
+  }
+  warnNoVoice(msg);
+}
+
+function speak(t,rate,pitch){
+  if(!("speechSynthesis" in window))return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(t);
+  const cjk=(t.match(/[\u4e00-\u9fff]/g)||[]).length, lat=(t.match(/[a-zA-Z]/g)||[]).length;
+  const zh=cjk>lat*0.5;
+  u.lang=zh?"zh-CN":"en-GB";
+  if(!voiceEn) pickVoice();   // iOS 上加载时 getVoices() 为空、且 onvoiceschanged 不可靠；点朗读时已在用户手势栈内，此刻补探通常已有数据
+  const v=zh?(voiceZh||voiceEn):(voiceEn||voiceZh); if(v)u.voice=v;
+  u.rate=rate||0.85; u.pitch=(pitch===undefined?1.0:pitch);
+  speechSynthesis.speak(u);
+}
+const PET_PITCH={dog:1.3,cat:1.8,fish:2.0,bird:2.0,dino:0.6,pig:1.1};
+function petPitch(){ return PET_PITCH[S.pet.type]||1.2; }
+let audioEl=null;
+async function cloudSpeak(text,rate){
+  if(!S.ai.key||!S.tts||!S.tts.on)return false;
+  try{
+    // stepaudio-2.5-tts 将圆括号内文本作为指令不朗读，因此发送前去掉半角括号
+    const cleanText=text.replace(/[()]/g,"");
+    const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),12000);
+    const url=S.ai.base.replace(/\/+$/,"")+"/audio/speech";
+    const r=await fetch(url,{
+      method:"POST",signal:ctl.signal,
+      headers:{"Content-Type":"application/json","Authorization":"Bearer "+S.ai.key},
+      body:JSON.stringify({model:S.tts.model||"stepaudio-2.5-tts",voice:S.tts.voice||"lively-girl",input:cleanText.slice(0,600),response_format:"mp3"})
+    });
+    clearTimeout(to);
+    if(!r.ok){
+      let body=""; try{ body=(await r.text()).slice(0,300); }catch(e){}
+      console.warn("[cloudSpeak] HTTP "+r.status+" from "+url+" model="+S.tts.model+" body="+(body||"(无响应体)"));
+      if(r.status===401) toast("语音鉴权失败：请检查API Key和语音模型权限");
+      else if(r.status===404) toast("该网关可能不支持语音端点 /v1/audio/speech");
+      else if(r.status===422) toast("语音参数错误（模型名或音色可能不支持）");
+      else if(r.status===400) toast("语音请求被拒（400）："+(body.slice(0,60)||"模型名或音色 ID 可能不对"));
+      return false;
+    }
+    // 检查响应类型——部分网关可能返回 JSON 包裹的 base64 而非纯音频流
+    const ct=r.headers.get("content-type")||"";
+    if(ct.includes("application/json")){
+      const j=await r.json();
+      // new-api 类网关有时把音频包在 data.audio (base64) 或直接给 mp3_url
+      if(j.data&&j.data.audio){ await playBase64(j.data.audio,rate); return true; }
+      if(j.audio_url){ await fetchAndPlay(j.audio_url,rate); return true; }
+      if(j.data&&j.data.url){ await fetchAndPlay(j.data.url,rate); return true; }
+      if(j.url){ await fetchAndPlay(j.url,rate); return true; }
+      // atomclub new-api_error 格式："error":{"message":"Invalid token","type":"new_api_error"}
+      if(j.error&&j.error.type==="new_api_error"){
+        console.warn("[cloudSpeak] new_api_error:",j.error.message);
+        return false;
+      }
+      console.warn("[cloudSpeak] JSON response but unknown audio field:",Object.keys(j).slice(0,8));
+      return false;
+    }
+    const b=await r.blob();
+    if(!ct.includes("audio")&&!b.type.includes("audio")&&b.size<2000)return false;
+    if(audioEl)audioEl.pause();
+    audioEl=new Audio(URL.createObjectURL(b));
+    if(rate)audioEl.playbackRate=Math.min(2,Math.max(.5,rate));
+    await audioEl.play();
+    return true;
+  }catch(e){ console.warn("[cloudSpeak] fetch failed:",e.message); return false; }
+}
+async function playBase64(b64,rate){
+  const raw=atob(b64); const arr=new Uint8Array(raw.length);
+  for(let i=0;i<raw.length;i++)arr[i]=raw.charCodeAt(i);
+  const blob=new Blob([arr],{type:"audio/mp3"});
+  if(audioEl)audioEl.pause();
+  audioEl=new Audio(URL.createObjectURL(blob));
+  if(rate)audioEl.playbackRate=Math.min(2,Math.max(.5,rate));
+  await audioEl.play();
+}
+async function fetchAndPlay(url,rate){
+  const r2=await fetch(url); if(!r2.ok)return;
+  const b2=await r2.blob();
+  if(audioEl)audioEl.pause();
+  audioEl=new Audio(URL.createObjectURL(b2));
+  if(rate)audioEl.playbackRate=Math.min(2,Math.max(.5,rate));
+  await audioEl.play();
+}
+async function speakSmart(t,rate,pitch){
+  if("speechSynthesis" in window)speechSynthesis.cancel();
+  if(audioEl)audioEl.pause();
+  // AI 回复（中文、英文或混合文本）统一优先使用云端 TTS；失败时再回退到手机系统音色。
+  // 普通单词、鼓励语音仍直接调用 speak()，因此不影响用户的系统音色设置。
+  return cloudSpeak(t,rate).then(ok=>{ if(!ok){ speak(t,rate,pitch); checkVoiceOnce(/[a-zA-Z]/.test(String(t))); } return ok; });
+}
+let SR=null, srBusy=false;
+function makeRecognition(){
+  const C=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!C)return null;
+  const r=new C();
+  r.lang="en-US"; r.interimResults=false; r.continuous=false; r.maxAlternatives=1;
+  return r;
+}
+SR=makeRecognition();
+
+/* ==================== toast / confetti ==================== */
+let toastTimer=null;
+function toast(t){ const e=document.getElementById("toast"); e.textContent=t; e.style.display="block"; clearTimeout(toastTimer); toastTimer=setTimeout(()=>e.style.display="none",2200); }
+function xpPop(n){ const d=document.createElement("div"); d.className="xpPop"; d.textContent="+"+n+" xp"; document.body.appendChild(d); setTimeout(()=>d.remove(),1300); }
+function confetti(){ const em=["🎉","⭐","🎨","✨","🌟","💛"]; for(let i=0;i<22;i++){ const d=document.createElement("div"); d.className="confetti"; d.textContent=em[i%em.length]; d.style.left=(Math.random()*100)+"vw"; d.style.animationDelay=(Math.random()*0.6)+"s"; document.body.appendChild(d); setTimeout(()=>d.remove(),3000);} }
+
+/* ==================== tasks & xp ==================== */
+function addXp(n){ const lv0=level(); S.xp+=n; xpPop(n); if(level()>lv0){ petSay(petCry()+" Level up! Look, I'm growing! Thank you, EMMA!"); setTimeout(()=>toast("🎉 宠物升级到 Lv"+level()+"！"),800); } checkTasks(); save(); }
+function checkTasks(){
+  const d=todayStr(), dn=BS().plan.dailyNew, cl=BS().claimed;
+  const tasks=[
+    {k:"new", ok:newDoneToday()>=dn, xp:25},
+    {k:"rev", ok:revDoneToday()>=10, xp:25},
+    {k:"min", ok:minutesToday()>=10, xp:25}
+  ];
+  tasks.forEach(t=>{ const key=d+":"+t.k; if(t.ok&&!cl[key]){ cl[key]=1; S.xp+=t.xp; setTimeout(()=>{toast("每日任务完成 +"+t.xp+"xp 🎉");},600); } });
+}
+
+/* ==================== AI（OpenAI 兼容接口） ==================== */
+async function callAI(messages){
+  const cfg=S.ai;
+  if(!cfg||!cfg.key||!cfg.base){ const e=new Error("NOCONF"); e.noconf=true; throw e; }
+  let r;
+  try{
+    r=await fetch(cfg.base.replace(/\/+$/,"")+"/chat/completions",{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Authorization":"Bearer "+cfg.key},
+      body:JSON.stringify({model:cfg.model||"deepseek-v3.2",messages,temperature:0.7,max_tokens:900})
+    });
+  }catch(netErr){
+    const inPreview=/^(127\.0\.0\.1|localhost)(:|$)/.test(location.host);
+    throw new Error(inPreview
+      ?"预览面板的安全策略(CSP)会拦截外部API请求——请用 Edge/Chrome 直接双击打开 index.html 文件使用"
+      :"无法连接服务器（"+(netErr&&netErr.message||"网络错误")+"）：请检查网络或接口地址");
+  }
+  if(!r.ok){ const t=await r.text().catch(()=> ""); let msg=t.slice(0,160); try{ msg=JSON.parse(t).error.message||msg; }catch(e){}
+    if(r.status===401||r.status===403)msg="API Key 无效或余额不足："+msg;
+    else if(r.status===429)msg="触发限流，请稍后再试";
+    else if(r.status===404)msg="接口地址或模型名不对（404）："+msg;
+    throw new Error(msg); }
+  const j=await r.json();
+  return (j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content||"").trim();
+}
+const EMMA_SYS="你正在辅导一个叫 EMMA（马尚）的上海六年级女孩学英语，她用的是上教社《牛津上海版》教材（五四学制），她最喜欢画画。语气要亲切、鼓励、像大姐姐。涉及例句时尽量结合画画/美术主题。";
+const CHAT_CFG={
+ practice:{title:"口语对练 💬",tts:true,ph:"用英语或中文和老师聊天…",
+   sys:EMMA_SYS+"你是 EMMA 的英语口语陪练。规则：1) 每轮回复不超过 2 句简单英语 + 1 句中文提示；2) 第一行必须是英语，第二行以「🌱」开头给中文翻译或提示；3) 围绕六年级水平话题（学校、家庭、食物、运动、动物、旅行、画画）；4) 她如果说中文，用英语引导她表达；5) 及时表扬。",
+   hello:"Hi EMMA! I'm your English buddy. What did you draw today? 🎨\n🌱 嗨 EMMA！我是你的英语小伙伴，今天画了什么呀？用英语说说看，不会的词用中文代替也可以哦。"},
+ grammar:{title:"语法讲解 📝",tts:false,ph:"问一个语法问题，如：一般现在时怎么用",
+   sys:EMMA_SYS+"你是 EMMA 的语法老师。用六年级能懂的中文讲语法：1) 先一句话说清规则；2) 给 2-3 个结合画画主题的例句（附中文）；3) 指出最容易犯的错；4) 结尾出 1 道小练习让她回答。",
+   hello:"我是你的语法小老师 📝 想知道哪个语法点？比如：一般现在时、现在进行时、名词复数、there be 句型……"},
+ writing:{title:"AI 写作 ✍️",tts:false,ph:"把你写的英语作文/句子贴在这里",
+   sys:EMMA_SYS+"你是 EMMA 的英语作文老师（上海初中水平，中考标准）。收到她的英文后：1) 先打分（10分制）并说一句鼓励；2) 逐句指出错误并给改正（用【原文】→【改正】格式）；3) 给 1-2 个加分句型建议；4) 最后给一版修改后的范文。中文讲解。",
+   hello:"把你写的英语句子或小作文发给我吧 ✍️ 我会帮你批改、打分，还会教你更地道的写法。"},
+ qa:{title:"十万个为什么 ❓",tts:false,ph:"随便问，比如：为什么天空是蓝色的",
+   sys:EMMA_SYS+"你是 EMMA 的百科伙伴。用六年级能懂的中文回答各种问题，有趣、准确、简洁（150字内），可以结合画画和艺术例子。",
+   hello:"我是百事通小博士 ❓ 天文地理、动物植物、艺术科学……尽管问！"},
+ extend:{title:"词汇拓展 🧩",tts:false,ph:"输入一个英语单词",
+   sys:EMMA_SYS+"你是 EMMA 的词汇拓展助手。收到一个英语单词后输出：1) 音标+词性+中文；2) 3 个结合画画主题的趣味例句（附中文）；3) 一个记忆小窍门（词根/联想/谐音均可）；4) 2 个同主题相关词。简洁清晰。",
+   hello:"给我一个单词，我帮你把它「画」进脑子里 🎨 比如：colourful"},
+ pet:{title:"和 {pet} 聊天 💬",tts:true,ph:"和你的宠物说说话…",
+   sys:EMMA_SYS+"你现在扮演 EMMA 的宠物，一只会叫「{cry}」的{type}，名字叫{name}。规则：1) 用非常简单的英语（每句不超过10个词）和六年级小女孩聊天，必要时配少量中文；2) 可爱、爱撒娇、特别爱吃（单词就是它的食物）；3) 经常鼓励她学习；4) 回复要短，不超过3句；5) 偶尔发出叫声{cry}。",
+   hello:"{cry} Hi EMMA! I'm {name}! Talk to me!\n🌱 嗨！我是{name}！跟我聊聊天吧！"}
+};
+let CHAT=null;
+function openChat(kind,initText){
+  const cfg={...CHAT_CFG[kind]};
+  const petT=PET_TYPES[S.pet.type]||PET_TYPES.dog;
+  cfg.title=cfg.title.replace("{pet}",S.pet.name);
+  cfg.sys=cfg.sys.replace(/\{name\}/g,S.pet.name).replace(/\{type\}/g,petT.name).replace(/\{cry\}/g,petT.cry);
+  cfg.hello=cfg.hello.replace(/\{name\}/g,S.pet.name).replace(/\{cry\}/g,petT.cry);
+  CHAT={kind,cfg,msgs:[{role:"system",content:cfg.sys}],busy:false};
+  openSheet(`<h3>${cfg.title}<span id="ttsTog" style="float:right;font-size:13px;font-weight:700;color:var(--ytext);cursor:pointer;background:#FFF3D1;padding:5px 12px;border-radius:12px" onclick="toggleTts()">${S.ttsAuto?"🔊 自动朗读":"🔇 已静音"}</span></h3>
+    <div class="muted" style="text-align:center;margin:-6px 0 10px">点任意句子可单独重复读</div>
+    <div class="chatArea" id="chatArea"><div class="bub bubAi">${esc(cfg.hello)}</div></div>
+    <div class="chatInRow">
+      ${cfg.tts&&SR?'<button class="chatMic" id="chatMicBtn" onclick="chatMic()">🎙️</button>':""}
+      <input id="chatIn" placeholder="${esc(cfg.ph)}" onkeydown="if(event.key==='Enter')sendChat()">
+      <button class="chatSend" onclick="sendChat()">发送</button>
+    </div>
+    <div style="height:8px"></div>`);
+  if(initText){ document.getElementById("chatIn").value=initText; setTimeout(()=>sendChat(),200); }
+}
+function bubHtml(role,text,clickable){
+  let inner=esc(text);
+  if(clickable&&role!=="user")inner=sentHtml(text);
+  return `<div class="bub ${role==="user"?"bubMe":"bubAi"}">${inner}</div>`;
+}
+function sentHtml(text){
+  let parts=null;
+  try{ parts=text.split(new RegExp("\\n+|(?<=[。！？!?；;])|(?<=\\.)\\s+")).filter(s=>s&&s.trim()); }catch(e){ parts=null; }
+  if(!parts||!parts.length)return esc(text);
+  return parts.map(s=>`<span class="sent" onclick="replaySent(this)">${esc(s.trim())}</span>`).join("");
+}
+function replaySent(el){
+  document.querySelectorAll(".sent.playing").forEach(e=>e.classList.remove("playing"));
+  el.classList.add("playing");
+  speakSmart(el.textContent,1.0,(CHAT&&CHAT.kind==="pet")?petPitch():1.0);
+  setTimeout(()=>el.classList.remove("playing"),Math.min(6000,600+el.textContent.length*120));
+}
+function toggleTts(){
+  S.ttsAuto=!S.ttsAuto; save();
+  const el=document.getElementById("ttsTog");
+  if(el)el.textContent=S.ttsAuto?"🔊 自动朗读":"🔇 已静音";
+  if(!S.ttsAuto){ if("speechSynthesis" in window)speechSynthesis.cancel(); if(audioEl)audioEl.pause(); }
+  toast(S.ttsAuto?"已开启自动朗读 🔊":"已静音 🔇");
+}
+async function sendChat(preset){
+  if(!CHAT||CHAT.busy)return;
+  const inp=document.getElementById("chatIn");
+  const text=(preset!==undefined?preset:inp.value).trim();
+  if(!text)return;
+  if(!S.ai.key){ closeSheet(); sheetAISet("使用 AI 功能前，请先配置接口"); return; }
+  const area=document.getElementById("chatArea");
+  CHAT.msgs.push({role:"user",content:text});
+  area.insertAdjacentHTML("beforeend",bubHtml("user",text));
+  area.insertAdjacentHTML("beforeend",`<div class="bub bubAi" id="aiThinking"><span class="spin">⏳</span> 思考中…</div>`);
+  area.scrollTop=area.scrollHeight; inp.value=""; CHAT.busy=true;
+  try{
+    const reply=await callAI(CHAT.msgs);
+    CHAT.msgs.push({role:"assistant",content:reply});
+    document.getElementById("aiThinking").outerHTML=bubHtml("ai",reply,true);
+    if(S.ttsAuto){ speakSmart(reply.replace(/[*#>`\-]/g,""),0.98,CHAT.kind==="pet"?petPitch():1.0); }
+  }catch(e){
+    document.getElementById("aiThinking").outerHTML=`<div class="bub bubAi">😅 ${esc(e.message)}<br><span class="muted">如反复失败，请检查「我的 → AI 接口设置」。</span></div>`;
+  }
+  CHAT.busy=false; area.scrollTop=area.scrollHeight;
+}
+function chatMic(){
+  const btn=document.getElementById("chatMicBtn");
+  if(!btn)return;
+  if(srBusy){ toast("正在录音，请先说完"); return; }
+  SR=makeRecognition();
+  if(!SR){ btn.textContent="🎙️"; toast("当前浏览器不支持语音输入，请用 Safari 或 Chrome"); return; }
+  srBusy=true; btn.textContent="🔴"; btn.disabled=true; toast("请说英语…");
+  SR.lang="en-US";
+  SR.onstart=()=>{ btn.textContent="⏺️"; };
+  SR.onresult=e=>{ const t=e.results[0]&&e.results[0][0]?e.results[0][0].transcript.trim():""; if(t){ document.getElementById("chatIn").value=t; sendChat(); } else toast("没有听到内容"); };
+  SR.onerror=e=>{ const msg=e.error==="not-allowed"?"麦克风权限被拒绝，请在浏览器设置中允许":e.error==="no-speech"?"没有听到声音，请靠近麦克风再试":"录音失败（"+(e.error||"未知错误")+"）"; toast(msg); };
+  SR.onend=()=>{ srBusy=false; btn.disabled=false; btn.textContent="🎙️"; };
+  try{ SR.start(); }catch(e){ srBusy=false; btn.disabled=false; btn.textContent="🎙️"; toast("录音启动失败，请再试一次"); }
+}
+function sheetAISet(tip){
+  const STEP_VOICES=["lively-girl","vibrant-youth","soft-spoken-gentleman","magnetic-voiced-male","zixinnansheng","elegantgentle-female","livelybreezy-female","wenrounansheng","wenrougongzi","yuanqinansheng","jingdiannvsheng","wenroushunv","tianmeinvsheng"];
+  const STEP_VOICE_LABELS={"lively-girl":"活泼女孩","vibrant-youth":"元气少年","soft-spoken-gentleman":"温柔绅士","magnetic-voiced-male":"磁性男声","zixinnansheng":"自信男声","elegantgentle-female":"气质温婉","livelybreezy-female":"活力轻快","wenrounansheng":"温柔男声","wenrougongzi":"温柔公子","yuanqinansheng":"元气男声","jingdiannvsheng":"经典女声","wenroushunv":"温柔熟女","tianmeinvsheng":"甜美女声"};
+  const voiceIsCustom=!!S.tts.voice&&!STEP_VOICES.includes(S.tts.voice);
+  openSheet(`<h3>🤖 AI 接口设置</h3>
+  ${tip?`<div class="emmaBox" style="margin:0 0 14px"><b>💡</b> ${esc(tip)}</div>`:""}
+  <div class="fRow"><label>接口地址（OpenAI 兼容格式）</label>
+  <input id="aiBase" value="${esc(S.ai.base)}" placeholder="https://api.atomclub.cn/v1"></div>
+  <div class="fRow"><label>模型名</label>
+  <input id="aiModel" value="${esc(S.ai.model)}" placeholder="deepseek-v3.2"></div>
+  <div class="fRow"><label>API Key（只保存在本机浏览器，不会上传）</label>
+  <input id="aiKey" type="password" value="${esc(S.ai.key)}" placeholder="sk-..."></div>
+  <div class="fRow"><label>云端语音模型（选择支持语音的模型）</label>
+  <select id="aiTtsModel" class="fSelect">
+    <option value="stepaudio-2.5-tts" ${S.tts.model==="stepaudio-2.5-tts"?"selected":""}>stepaudio-2.5-tts（推荐）</option>
+    <option value="cosyvoice-v2" ${S.tts.model==="cosyvoice-v2"?"selected":""}>cosyvoice-v2</option>
+    <option value="qwen-tts" ${S.tts.model==="qwen-tts"?"selected":""}>qwen-tts</option>
+    <option value="custom" ${!["stepaudio-2.5-tts","cosyvoice-v2","qwen-tts"].includes(S.tts.model)?"selected":""}>自定义模型</option>
+  </select>
+  <input id="aiTtsCustom" value="${esc(!["stepaudio-2.5-tts","cosyvoice-v2","qwen-tts"].includes(S.tts.model)?S.tts.model:"")}" placeholder="自定义模型名（选自定义时填写）" style="margin-top:8px"></div>
+  <div class="fRow"><label>音色 voice（从下列 13 个官方音色中选择，选错会返回 HTTP 400）</label>
+  <select id="aiTtsVoice" class="fSelect" onchange="const ci=document.getElementById('aiTtsVoiceCustom');if(ci)ci.style.display=this.value==='__custom__'?'block':'none';">
+    ${STEP_VOICES.map(v=>'<option value="'+v+'" '+(S.tts.voice===v?'selected':'')+'>'+esc(STEP_VOICE_LABELS[v])+' '+v+'</option>').join("")}
+    <option value="__custom__" ${voiceIsCustom?"selected":""}>自定义音色 ID（克隆音色）</option>
+  </select>
+  <input id="aiTtsVoiceCustom" value="${voiceIsCustom?esc(S.tts.voice):""}" placeholder="填写自定义音色 ID" style="${voiceIsCustom?'':'display:none;'}margin-top:8px"></div>
+  <div class="muted" style="margin:6px 0 0;font-size:12px;line-height:1.6">当前英文音色：${voiceEn?esc(voiceEn.name)+"（"+esc(voiceEn.lang)+"）":"未探测到英文音色，将使用系统默认音色（可能是中文音色）"}</div>
+  <div style="display:flex;gap:10px;margin-top:8px;margin-bottom:14px">
+    <button class="btn2" onclick="redetectVoice()">🔄 重新检测语音</button>
+  </div>
+  <div style="display:flex;gap:10px;margin-bottom:14px">
+    <button class="btn2" style="flex:1" id="cloudTtsBtn" onclick="toggleCloudTts()">${S.tts.on?"✅ 云端语音：开":"⭕ 云端语音：关"}</button>
+    <button class="btn2" style="flex:1" onclick="testTts()">🎧 试听宠物音</button>
+  </div>
+  <button class="btn3d" onclick="saveAISet()">保存并测试</button>
+  <div class="muted" style="text-align:center;margin-top:10px">atomclub 网关：https://engine.atomclub.cn/v1 或 https://api.atomclub.cn/v1（两者等效）· DeepSeek https://api.deepseek.com/v1<br>⚠️ stepaudio-2.5-tts 仅支持上述 13 个官方音色，填错会返回 HTTP 400 · 在本预览面板内测试会被安全策略拦截，请用浏览器直接打开 index.html</div>
+  <div style="height:6px"></div>`);
+}
+async function saveAISet(){
+  S.ai.base=document.getElementById("aiBase").value.trim()||"https://engine.atomclub.cn/v1";
+  S.ai.model=document.getElementById("aiModel").value.trim()||"deepseek-v3.2";
+  S.ai.key=document.getElementById("aiKey").value.trim();
+  const tm=document.getElementById("aiTtsModel"), tc=document.getElementById("aiTtsCustom"), tv=document.getElementById("aiTtsVoice"), vc=document.getElementById("aiTtsVoiceCustom");
+  if(tm)S.tts.model=tm.value==="custom"?((tc&&tc.value.trim())||"stepaudio-2.5-tts"):tm.value;
+  if(tv)S.tts.voice=tv.value==="__custom__"?((vc&&vc.value.trim())||"lively-girl"):(tv.value||"lively-girl");
+  save();
+  if(!S.ai.key){ toast("请填入 API Key"); return; }
+  toast("正在测试连接…");
+  try{
+    const r=await callAI([{role:"user",content:"Say hi in one word."}]);
+    toast("✅ 文本连接成功！");
+    // 顺带测试语音端点
+    if(S.tts.on){
+      try{
+        const url=S.ai.base.replace(/\/+$/,"")+"/audio/speech";
+        const tr=await fetch(url,{method:"POST",
+          headers:{"Content-Type":"application/json","Authorization":"Bearer "+S.ai.key},
+          body:JSON.stringify({model:S.tts.model||"stepaudio-2.5-tts",voice:S.tts.voice||"lively-girl",input:"test",response_format:"mp3"})});
+        if(tr.ok||tr.status===422){ toast("✅ 语音端点可用"); }
+        else{ toast("⚠️ 语音端点返回 HTTP "+tr.status+"，请检查模型名或额度"); }
+      }catch(te){ toast("⚠️ 语音端点不通："+te.message.slice(0,40)); }
+    }
+    closeSheet(); render();
+  }catch(e){ toast("❌ "+e.message.slice(0,70)); }
+}
+function toggleCloudTts(){
+  S.tts.on=!S.tts.on; save();
+  const b=document.getElementById("cloudTtsBtn");
+  if(b)b.textContent=S.tts.on?"✅ 云端语音：开":"⭕ 云端语音：关";
+  toast(S.tts.on?"云端语音已开启":"云端语音已关闭（用本地语音）");
+}
+async function testTts(){
+  const tm=document.getElementById("aiTtsModel"), tv=document.getElementById("aiTtsVoice"), vc=document.getElementById("aiTtsVoiceCustom"), k=document.getElementById("aiKey");
+  if(tm)S.tts.model=tm.value.trim()||"stepaudio-2.5-tts";
+  if(tv)S.tts.voice=tv.value==="__custom__"?((vc&&vc.value.trim())||"lively-girl"):(tv.value||"lively-girl");
+  if(k)S.ai.key=k.value.trim();
+  save();
+  if(!S.ai.key){ toast("先填入 API Key 再试听"); return; }
+  if(!S.tts.on){ toast("云端语音已关闭，点上方按钮开启"); return; }
+  toast("试听请求中…");
+  const ok=await cloudSpeak("Hi EMMA! I'm your little pet! Let's learn English together!",1.0);
+  if(!ok){ toast("❌ 云端语音失败，已改用本地语音（请核对模型名和音色 ID）"); speak("Hi EMMA! I'm your little pet!",1.0,petPitch()); }
+}
+
+/* ==================== tab framework ==================== */
+const TABS=[["plan","📅","计划"],["course","🎬","课程"],["book","📖","单词书"],["ai","🐾","宠物"],["me","👤","我的"]];
+let curTab="plan";
+function renderTabbar(){
+  document.getElementById("tabbar").innerHTML=TABS.map(t=>
+    `<div class="tab ${curTab===t[0]?"on":""}" onclick="goTab('${t[0]}')"><div class="ic">${t[1]}</div><div class="lb">${t[2]}</div></div>`).join("");
+}
+function goTab(t){ curTab=t; renderTabbar(); render(); document.getElementById("page").scrollTop=0; }
+function render(){
+  const p=document.getElementById("page");
+  if(curTab==="plan")p.innerHTML=vPlan();
+  else if(curTab==="course")p.innerHTML=vCourse();
+  else if(curTab==="book")p.innerHTML=vBook();
+  else if(curTab==="ai")p.innerHTML=vAI();
+  else p.innerHTML=vMe();
+}
+
+/* ==================== view: 计划 ==================== */
+let planExpanded=false;
+function vPlan(){
+  const meta=BOOK_META[S.book]||{title:S.book,cover:""};
+  const total=ALL.length, learned=learnedList().length;
+  const rb=reviewBatch();
+  const dn=BS().plan.dailyNew;
+  const totalDays=Math.ceil(total/dn)||1, cur=dayIdx();
+  let rows="";
+  const showN=Math.min(totalDays, planExpanded?totalDays:7);
+  for(let i=0;i<showN;i++){
+    const newC=Math.min(dn,Math.max(0,total-i*dn));
+    let revC=0; for(let j=0;j<i;j++){ if(INT.slice(0,5).includes(i-j)) revC+=Math.min(dn,Math.max(0,total-j*dn)); }
+    const done = i<cur || (i===cur && newDoneToday()>=dn && rb.length===0);
+    const doing = i===cur && !done;
+    rows+=`<div class="dayRow ${done?"done":""}">
+      <span class="badge ${done?"bDone":doing?"bDoing":"bTodo"}">${done?"已完成":doing?"进行中":"未开启"}</span>
+      <span class="dname">第${i+1}天</span>
+      <span class="dinfo"><span>新学 <b>${newC}</b></span><span>复习 <b>${revC}</b></span></span>
+    </div>`;
+  }
+  return `
+  <div class="topbar"><div class="ttl"><span class="mascot">${petEmoji()}</span>计划</div><div class="right" onclick="toast('已显示在下方列表')">⊞ 计划列表</div></div>
+  <div class="card bookCard">
+    <div class="cover"><div class="cb1">义务教育教科书</div><div class="cb2">英语</div><div class="cb3">ENGLISH</div><div class="cbig">E</div><div class="cb4">${esc(meta.cover)}</div></div>
+    <div class="bookInfo">
+      <span class="chip" onclick="sheetBookSwitch()">⇄ 切换教材</span>
+      <div class="bookName">${esc(meta.title)}</div>
+      <div class="bookSub">初中 / 沪教版-五四（牛津上海版）</div>
+      <div class="pbarWrap"><div class="pbar" style="width:${total?Math.round(learned/total*100):0}%"></div></div>
+      <div class="bookStat"><span>已学: <b>${learned}</b> ›</span><span>总计: <b>${total}</b></span></div>
+    </div>
+  </div>
+  <div class="secT"><b><span class="bar"></span>今日计划</b><span class="more" onclick="sheetPlan()">调整计划 ›</span></div>
+  <div class="muted" style="margin:-4px 2px 10px">依照艾宾浩斯记忆法制定</div>
+  <div class="todayGrid">
+    <div class="todayCard tBlue"><span class="bigIco">Aa</span><div class="cnt">${newDoneToday()}<small>/${dn}</small></div><button class="todayBtn" onclick="startSession('new')">新学</button></div>
+    <div class="todayCard tOrange"><span class="bigIco">⏰</span><div class="cnt">${revDoneToday()}<small>/${rb.length+revDoneToday()}</small></div><button class="todayBtn" onclick="startSession('review')">复习</button></div>
+  </div>
+  <div class="secT"><b><span class="bar"></span>计划列表（共学${totalDays}天）</b><span class="more" onclick="planExpanded=!planExpanded;render()">${planExpanded?"收起":"查看更多 ›"}</span></div>
+  <div class="dayList">${rows}</div>`;
+}
+function sheetBookSwitch(){
+  openSheet(`<h3>教材库 · 沪教版五四（牛津上海版）</h3>
+  ${BOOK_ORDER.map(id=>{
+    const av=bookAvail(id), meta=BOOK_META[id];
+    const cnt=av?BOOKS[id].units.reduce((a,u)=>a+u.words.length,0):0;
+    return `<div class="unitRow" ${av?`style="cursor:pointer" onclick="switchBook('${id}')"`:'style="opacity:.45"'}>
+      <div class="uic" style="background:${av?"var(--greenBg)":"#F0EAD6"}">${av?"📗":"📕"}</div>
+      <div class="uname"><b>${meta.title}</b><div class="uprog">${av?cnt+" 词 · "+BOOKS[id].units.length+" 个单元":"词表整理中，敬请期待"}</div></div>
+      ${S.book===id?'<span style="color:var(--green);font-weight:900">✓ 当前</span>':""}
+    </div>`;}).join("")}
+  <div class="muted" style="text-align:center;margin-top:8px">进度按教材分别保存，切换不丢失</div>
+  <div style="height:8px"></div>`);
+}
+function switchBook(id){
+  if(!bookAvail(id))return;
+  S.book=id; BS(); loadBookWords(); save(); closeSheet();
+  toast("已切换到「"+BOOK_META[id].title+"」📗");
+  petSay(petCry()+" Wow, a new book! Let's go!");
+  render();
+}
+function sheetPlan(){
+  const total=ALL.length, remain=total-learnedList().length;
+  openSheet(`<h3>学习计划（${esc(BOOK_META[S.book].title)}）</h3>
+  <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:6px"><span>单词总数: <b>${total}</b></span><span>剩余单词数: <b>${remain}</b></span></div>
+  <div class="card" style="box-shadow:none;background:#FBF7EC;margin-top:10px">
+    <div class="muted" style="text-align:center">每日新学</div>
+    <div class="stepper"><button onclick="planStep(-1)">−</button><div class="val" id="dnVal">${BS().plan.dailyNew}<br><small>词</small></div><button onclick="planStep(1)">＋</button></div>
+    <div class="muted" style="text-align:center;margin-top:2px">预计总天数: <b id="dayEst" style="color:#E67E00">${Math.ceil(remain/BS().plan.dailyNew)}</b> 天</div>
+  </div>
+  <button class="btn3d" onclick="closeSheet();toast('计划已更新，加油！');render()">踏入高效科学背单词之旅</button>`);
+}
+function planStep(d){ BS().plan.dailyNew=Math.min(15,Math.max(3,BS().plan.dailyNew+d)); save(); const remain=ALL.length-learnedList().length;
+  document.getElementById("dnVal").innerHTML=BS().plan.dailyNew+"<br><small>词</small>";
+  document.getElementById("dayEst").textContent=Math.ceil(remain/BS().plan.dailyNew);
+}
+
+/* ==================== view: 课程 ==================== */
+function vCourse(){
+  return `
+  <div class="topbar"><div class="ttl"><span class="mascot">${petEmoji()}</span>课程</div><div class="right" onclick="toast('给 EMMA 的专属课程 💛')">${esc(BOOK_META[S.book].title)}</div></div>
+  <div class="secT"><b><span class="bar"></span>自然拼读课程</b></div>
+  <div class="tileGrid">
+    <div class="tile tileG" onclick="vPhonics()"><div class="tt">拼读发音手册</div><div class="ts">发音规律详解 · 点击单词可发声</div><span class="ico">📗</span></div>
+    <div class="tile tileO" onclick="startSession('challenge')"><div class="tt">趣味拼读闯关</div><div class="ts">听音拼写大挑战</div><span class="ico">🏆</span></div>
+  </div>
+  <div class="secT"><b><span class="bar"></span>音标课程</b></div>
+  <div class="tileGrid">
+    <div class="tile tileB" onclick="vPhonemes()"><div class="tt">48 国际音标表</div><div class="ts">点音标 · 听例词 · 学发音</div><span class="ico">🔤</span></div>
+    <div class="tile tileP" onclick="startSession('read')"><div class="tt">跟读训练营</div><div class="ts">大声朗读 · 语音评分</div><span class="ico">🎙️</span></div>
+  </div>
+  <div class="secT"><b><span class="bar"></span>我的资源</b><span class="more" onclick="toast('更多资源陆续更新')">更多 ›</span></div>
+  <div class="card" style="display:flex;gap:14px;align-items:center;cursor:pointer" onclick="vEmmaCards()">
+    <div style="width:74px;height:74px;border-radius:14px;background:linear-gradient(150deg,#C9B3FF,#9B7BFF);display:flex;align-items:center;justify-content:center;font-size:36px;flex:none">🎨</div>
+    <div style="flex:1"><b>EMMA 魔法讲解卡</b><div class="muted" style="margin-top:3px">用画画的世界记单词 · 共 ${ALL.filter(w=>w.emma).length} 张</div></div>
+    <span style="color:var(--muted)">›</span>
+  </div>
+  <div class="card" style="display:flex;gap:14px;align-items:center;cursor:pointer" onclick="openSheet(readTipHtml())">
+    <div style="width:74px;height:74px;border-radius:14px;background:linear-gradient(150deg,#FFD9A0,#FFB26B);display:flex;align-items:center;justify-content:center;font-size:36px;flex:none">📖</div>
+    <div style="flex:1"><b>课文听读指南</b><div class="muted" style="margin-top:3px">官方音频在哪听 · 如何配合本 App 跟读</div></div>
+    <span style="color:var(--muted)">›</span>
+  </div>`;
+}
+function readTipHtml(){
+  return `<h3>课文听读指南</h3>
+  <div style="font-size:14px;line-height:2">
+  ① 课文<b>官方原版音频</b>：打开「沪学习」App → 选择对应年级教材 → 点读/听课文（免费）。<br>
+  ② 听完官方音频后，回到本 App「跟读训练营」，挑本单元单词大声读，让发音越来越标准。<br>
+  ③ 为什么不内置课文音频？—— 课文音频和原文有版权，家庭学习直接用官方免费渠道最稳妥；本 App 专注官方做不好的事：纠音、错词管理、AI 讲解和趣味闯关。</div>
+  <div style="height:14px"></div><button class="btn3d" onclick="closeSheet();startSession('read')">去跟读</button>`;
+}
+
+/* ---------- 拼读手册 ---------- */
+const PHONICS=[
+ {p:"a_e",n:"魔法 e：a 发本音 /eɪ/",ex:["cake","name","game","late"],pat:/a[bcdefghjklmnpqrstvwxz]e\b/i},
+ {p:"i_e",n:"魔法 e：i 发本音 /aɪ/",ex:["bike","nine","time","like"],pat:/i[bcdefghjklmnpqrstvwxz]e\b/i},
+ {p:"o_e",n:"魔法 e：o 发本音 /əʊ/",ex:["home","nose","those","close"],pat:/o[bcdefghjklmnpqrstvwxz]e\b/i},
+ {p:"sh",n:"sh 发 /ʃ/（轻声'嘘'）",ex:["she","fish","shop"],pat:/sh/i},
+ {p:"ch",n:"ch 发 /tʃ/",ex:["China","lunch","chair"],pat:/ch/i},
+ {p:"th",n:"th 两种发音 /θ/ 与 /ð/",ex:["three","this","thank"],pat:/th/i},
+ {p:"ck",n:"ck 发 /k/（短元音后）",ex:["back","clock","duck"],pat:/ck/i},
+ {p:"ng",n:"ng 发 /ŋ/（鼻音）",ex:["sing","morning","long"],pat:/ng/i},
+ {p:"ee",n:"ee 发长音 /iː/",ex:["see","tree","week"],pat:/ee/i},
+ {p:"ea",n:"ea 常发 /iː/ 或 /e/",ex:["eat","read","bread"],pat:/ea/i},
+ {p:"ai / ay",n:"ai、ay 发 /eɪ/",ex:["rain","day","play"],pat:/a[iy]/i},
+ {p:"oa / ow",n:"oa、ow 常发 /əʊ/",ex:["boat","snow","show"],pat:/o[aw]/i},
+ {p:"oo",n:"oo 长音 /uː/ 短音 /ʊ/",ex:["food","book","zoo"],pat:/oo/i},
+ {p:"ar",n:"ar 发 /ɑː/",ex:["car","park","art"],pat:/ar/i},
+ {p:"or",n:"or 发 /ɔː/",ex:["horse","morning","short"],pat:/or/i},
+ {p:"er / ir / ur",n:"都常发 /ɜː/",ex:["her","bird","nurse"],pat:/[eiu]r/i},
+ {p:"ou / ow",n:"ou、ow 发 /aʊ/",ex:["about","how","flower"],pat:/ou|ow/i},
+ {p:"igh",n:"igh 发 /aɪ/",ex:["right","night","light"],pat:/igh/i},
+ {p:"ph",n:"ph 发 /f/",ex:["photo","elephant","geography"],pat:/ph/i},
+ {p:"wh",n:"wh 发 /w/",ex:["what","where","white"],pat:/wh/i}
+];
+function vPhonics(){
+  document.getElementById("page").innerHTML=`
+  <div class="topbar"><div class="ttl"><span style="cursor:pointer" onclick="goTab('course')">‹</span> 拼读发音手册</div></div>
+  <div class="muted" style="margin:0 2px 12px">点击单词即可听发音 · 蓝色词条来自当前教材</div>
+  ${PHONICS.map((r,i)=>{
+    const bank=ALL.filter(w=>r.pat.test(w.w)).slice(0,6);
+    return `<div class="ruleRow" id="rule${i}">
+      <div class="rh" onclick="document.getElementById('rule${i}').classList.toggle('open')">
+        <span class="rp">${esc(r.p)}</span><span class="rn">${esc(r.n)}</span><span style="color:var(--muted)">▾</span>
+      </div>
+      <div class="rbody">
+        ${r.ex.map(e=>`<span class="exWord" onclick="speak('${e}')">${e} 🔊</span>`).join("")}
+        ${bank.length?`<div style="margin-top:8px"><span class="muted">📗 本册单词：</span>${bank.map(w=>`<span class="exWord bank" onclick="speak('${w.w}')">${w.w} 🔊</span>`).join("")}</div>`:""}
+      </div>
+    </div>`;}).join("")}`;
+  curTab="course"; renderTabbar();
+  document.getElementById("page").scrollTop=0;
+}
+
+/* ---------- 48 音标 ---------- */
+const PHONEMES=[
+ ["iː","see"],["ɪ","big"],["e","red"],["æ","cat"],["ɜː","bird"],["ə","about"],["ʊ","book"],["uː","food"],
+ ["ɔː","horse"],["ɒ","hot"],["ɑː","car"],["ʌ","cup"],["eɪ","cake"],["aɪ","bike"],["ɔɪ","boy"],["əʊ","home"],
+ ["aʊ","how"],["ɪə","here"],["eə","there"],["ʊə","tour"],
+ ["p","pen"],["b","bag"],["t","ten"],["d","dog"],["k","kite"],["g","go"],["f","fish"],["v","very"],
+ ["s","sun"],["z","zoo"],["θ","three"],["ð","this"],["ʃ","she"],["ʒ","usually"],["h","hat"],["r","red"],
+ ["tʃ","China"],["dʒ","juice"],["ts","cats"],["dz","beds"],["tr","tree"],["dr","dream"],
+ ["m","mom"],["n","nose"],["ŋ","sing"],["l","lion"],["w","we"],["j","yes"]
+];
+function vPhonemes(){
+  document.getElementById("page").innerHTML=`
+  <div class="topbar"><div class="ttl"><span style="cursor:pointer" onclick="goTab('course')">‹</span> 48 国际音标表</div></div>
+  <div class="muted" style="margin:0 2px 12px">点击任意音标，听例词发音（前 20 个为元音，后 28 个为辅音）</div>
+  <div class="card"><div class="phGrid">
+  ${PHONEMES.map(p=>`<div class="phCell" onclick="speak('${p[1]}')"><div class="sym">/${p[0]}/</div><div class="ex">${p[1]} 🔊</div></div>`).join("")}
+  </div></div>
+  <div class="muted" style="text-align:center">提示：先听 3 遍例词，再跟着读 3 遍，效果最好</div>`;
+  curTab="course"; renderTabbar();
+  document.getElementById("page").scrollTop=0;
+}
+
+/* ---------- EMMA 魔法卡 ---------- */
+function vEmmaCards(){
+  const cards=ALL.filter(w=>w.emma);
+  document.getElementById("page").innerHTML=`
+  <div class="topbar"><div class="ttl"><span style="cursor:pointer" onclick="goTab('course')">‹</span> EMMA 魔法讲解卡 🎨</div></div>
+  <div class="muted" style="margin:0 2px 12px">${cards.length?"每个单词都来自 EMMA 的画画世界":"当前教材的魔法卡制作中"} · 共 ${cards.length} 张</div>
+  ${cards.map(w=>`<div class="card">
+    <div style="display:flex;align-items:baseline;gap:10px;cursor:pointer" onclick="speak('${w.w}')">
+      <span style="font-size:24px;font-weight:900">${esc(w.w)}</span><span class="phon">${esc(w.ph)}</span><span style="margin-left:auto;font-size:22px">🔊</span>
+    </div>
+    <div style="font-weight:800;margin-top:6px">${esc(w.pos)} ${esc(w.zh)}</div>
+    <div class="emmaBox"><b>🎨 EMMA 小卡片：</b>${esc(w.emma)}</div>
+  </div>`).join("")||'<div class="card muted" style="text-align:center">本册暂无魔法卡，敬请期待</div>'}`;
+  curTab="course"; renderTabbar();
+  document.getElementById("page").scrollTop=0;
+}
+
+/* ==================== view: 单词书 ==================== */
+function vBook(){
+  const total=ALL.length, learned=learnedList().length, mastered=masteredList().length;
+  const meta=BOOK_META[S.book];
+  return `
+  <div class="topbar"><div class="ttl"><span class="mascot">${petEmoji()}</span>单词书</div><div class="right" onclick="toast('输入单词或中文即可搜索')">?</div></div>
+  <div class="searchBar"><span class="sIco">🔍</span><input id="searchIn" placeholder="搜索单词 / 中文释义" oninput="doSearch(this.value)"></div>
+  <div id="searchRes"></div>
+  <div class="card" style="text-align:center">
+    <div class="cover" style="margin:4px auto 12px;width:96px;height:128px"><div class="cb1">义务教育教科书</div><div class="cb2">英语</div><div class="cb3">ENGLISH</div><div class="cbig">E</div><div class="cb4">${esc(meta.cover)}</div></div>
+    <div class="statRow">
+      <div><div class="n dotG">${mastered}</div><div class="l">已掌握 ›</div></div>
+      <div><div class="n dotO">${learned}</div><div class="l">已学习</div></div>
+      <div><div class="n">${total}</div><div class="l">全部</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <button class="btn3d" onclick="sheetUnits('learn')">单元学习</button>
+      <button class="btn3d" style="background:linear-gradient(180deg,#FFE9AE,#FFD464);box-shadow:0 4px 0 #E8C26A" onclick="sheetUnits('review')">单元复习</button>
+    </div>
+  </div>
+  <div class="tileGrid">
+    <div class="tile tileG" onclick="startSession('challenge')"><div class="tt">单词训练场 🏆</div><div class="ts">练拼读 · 记单词 · 练听力</div><span class="ico">🎯</span></div>
+    <div class="tile tileB" onclick="startSession('read')"><div class="tt">听读训练</div><div class="ts">口语听力双练</div><span class="ico">🎤</span></div>
+  </div>
+  <div style="height:12px"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+    <div class="card" style="text-align:center;margin:0;cursor:pointer;padding:14px 6px" onclick="startSession('wrong')"><div style="font-size:26px">📕</div><b style="font-size:14px">错题本</b><div class="muted" style="font-size:11px">${wrongList().length} 个待攻克</div></div>
+    <div class="card" style="text-align:center;margin:0;cursor:pointer;padding:14px 6px" onclick="startSession('fav')"><div style="font-size:26px">⭐</div><b style="font-size:14px">收藏本</b><div class="muted" style="font-size:11px">${favList().length} 个收藏</div></div>
+    <div class="card" style="text-align:center;margin:0;cursor:pointer;padding:14px 6px" onclick="vAllWords()"><div style="font-size:26px">📒</div><b style="font-size:14px">全部单词</b><div class="muted" style="font-size:11px">按单元浏览</div></div>
+  </div>`;
+}
+function doSearch(q){
+  q=q.trim().toLowerCase();
+  const box=document.getElementById("searchRes");
+  if(!q){ box.innerHTML=""; return; }
+  const hits=ALL.filter(w=>w.w.toLowerCase().includes(q)||w.zh.includes(q)).slice(0,20);
+  box.innerHTML=hits.length?`<div class="card">${hits.map(w=>`
+    <div class="wRow" onclick="sheetWord('${widOf(w)}')">
+      <span class="ww">${esc(w.w)}</span><span class="wp">${esc(w.ph)}</span><span class="wz">${esc(w.zh)}</span>
+    </div>`).join("")}</div>`:`<div class="card muted" style="text-align:center">本册词库没有找到「${esc(q)}」</div>`;
+}
+function vAllWords(){
+  const bd=curBookData();
+  document.getElementById("page").innerHTML=`
+  <div class="topbar"><div class="ttl"><span style="cursor:pointer" onclick="goTab('book')">‹</span> 全部单词 · ${esc(BOOK_META[S.book].title)}</div></div>
+  ${bd.units.map((u,i)=>{const uw=ALL.filter(w=>w.unit===u.id);const done=uw.filter(w=>{const r=BS().words[widOf(w)];return r&&r.learned}).length;
+    return `<div class="secT"><b><span class="bar"></span>${unitIcon(u,i)} ${esc(u.title)}</b><span class="more">${done}/${uw.length}</span></div>
+    <div class="card">${uw.map(w=>{const r=BS().words[widOf(w)];
+      return `<div class="wRow" onclick="sheetWord('${widOf(w)}')">
+        <span class="ww" style="${r&&r.learned?"":"color:#B9AE95"}">${esc(w.w)}</span>
+        <span class="wp">${esc(w.ph)}</span>
+        ${r&&r.wrong>0&&r.box<2?'<span class="tag tagW">错</span>':""}${r&&r.fav?'<span class="tag tagF">★</span>':""}
+        <span class="wz">${esc(w.zh)}</span></div>`;}).join("")}</div>`;}).join("")}`;
+  curTab="book"; renderTabbar();
+  document.getElementById("page").scrollTop=0;
+}
+function sheetWord(id){
+  const w=byId[id]; if(!w)return;
+  const r=BS().words[id];
+  openSheet(`<h3>${esc(w.w)}</h3>
+  <div style="text-align:center">
+    <div class="phon" style="font-size:19px">${esc(w.ph)}</div>
+    <div class="zhBig">${esc(w.pos)} ${esc(w.zh)}</div>
+    <div class="muted" style="margin-top:4px">${esc(w.unitTitle)}</div>
+    <div style="margin:18px 0"><button class="spkBtn" onclick="speak('${w.w}')">🔊</button></div>
+    ${w.emma?`<div class="emmaBox"><b>🎨 EMMA 小卡片：</b>${esc(w.emma)}</div>`:""}
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px">
+      <button class="btn2" onclick="toggleFav('${id}')">${r&&r.fav?"★ 取消收藏":"☆ 收藏"}</button>
+      <button class="btn2" onclick="closeSheet();openChat('extend','${esc(w.w)}')">🧩 词汇拓展</button>
+      <button class="btn2" onclick="closeSheet();speak('${w.w}')">跟读三遍</button>
+    </div>
+  </div><div style="height:8px"></div>`);
+}
+function toggleFav(id){ const r=recOf(id,true); r.fav=!r.fav; save(); closeSheet(); toast(r.fav?"已收藏 ⭐":"已取消收藏"); render(); }
+
+/* ---------- 单元选择 ---------- */
+function sheetUnits(mode){
+  const bd=curBookData();
+  openSheet(`<h3>${mode==="learn"?"单元学习":"单元复习"} · ${esc(BOOK_META[S.book].title)}</h3>
+  ${bd.units.map((u,i)=>{const uw=ALL.filter(w=>w.unit===u.id);const done=uw.filter(w=>{const r=BS().words[widOf(w)];return r&&r.learned}).length;
+    return `<div class="unitRow">
+      <div class="uic" style="background:${unitBg(u,i)}">${unitIcon(u,i)}</div>
+      <div class="uname"><b>${esc(u.title)}</b><div class="uprog">已学 ${done}/${uw.length}</div></div>
+      <button class="btn2" onclick="closeSheet();startSession('${mode==="learn"?"ulearn":"ureview"}','${u.id}')">开始</button>
+    </div>`;}).join("")}<div style="height:8px"></div>`);
+}
+
+/* ==================== view: 宠物 ==================== */
+function vAI(){
+  const lv=level(), xpIn=S.xp%100;
+  const dn=BS().plan.dailyNew;
+  const t1=Math.min(newDoneToday(),dn), t2=Math.min(minutesToday(),10), t3=Math.min(revDoneToday(),10);
+  const aiOk=!!S.ai.key;
+  const petT=PET_TYPES[S.pet.type]||PET_TYPES.dog;
+  const rk=petRank();
+  const tasksDone=(t1>=dn?1:0)+(t2>=10?1:0)+(t3>=10?1:0);
+  const checkedIn=S.checkin.date===todayStr();
+  if(!S.petLine){ petGreet(); }
+  return `
+  <div class="topbar"><div class="ttl"><span class="mascot">${petEmoji()}</span>宠物伙伴</div><div class="right" onclick="sheetAISet()">${aiOk?"✅ AI 已连接":"⚙️ 接口设置"}</div></div>
+  <div class="card petCard">
+    <span class="lvChip">Lv${lv}</span>
+    <div class="xpLine"><span style="white-space:nowrap">${xpIn}/100 经验</span><div class="xpBar"><i style="width:${xpIn}%"></i></div></div>
+    <div class="xpSub"><span>${rk.e} ${rk.t}</span><span class="muted">距 Lv${lv+1} 还差 ${100-xpIn} · 总 ${S.xp}xp</span></div>
+    <div class="petTrack"><div class="petImg" id="petImgEl" onclick="petTap()">${petSVG()}</div></div>
+    <div class="petName">${esc(S.pet.name)} <span class="muted" style="font-weight:400">（${petT.name}）</span></div>
+    <div class="petBubble"><div class="pSay"><span style="flex:1;text-align:left" id="petLineTxt">${esc(S.petLine||"")}</span><button onclick="petSpeakLine()">🔊</button></div></div>
+    <div class="petBtns">
+      <button class="btn2" onclick="openChat('pet')">💬 聊聊天</button>
+      <button class="btn2" onclick="sheetPet()">🎽 换装改名</button>
+    </div>
+    <div class="petStat">
+      <div class="psItem"><span class="psIco">🔥</span><div class="psN">${streakDays()}</div><div class="psL">连续学习(天)</div></div>
+      <div class="psItem"><span class="psIco">✅</span><div class="psN">${tasksDone}/3</div><div class="psL">今日任务</div></div>
+      <div class="psItem"><span class="psIco">📅</span><div class="psN">${S.checkin.streak||0}</div><div class="psL">打卡连击</div></div>
+    </div>
+    <div class="petBtns">
+      <button class="btn2" onclick="sheetPetBook()">📖 宠物图鉴</button>
+      <button class="btn2" onclick="checkIn()">${checkedIn?"✅ 今日已打卡":"📅 每日打卡"}</button>
+    </div>
+  </div>
+  <div class="secT"><b><span class="bar"></span>每日喂食任务</b></div>
+  <div class="taskRow tkY"><span class="no">1</span><div class="tinfo"><div class="tname">新学 ${dn} 个单词</div><div class="tbar"><i style="width:${dn?t1/dn*100:0}%"></i></div></div><span class="txp">25xp</span><span class="tfood">${t1>=dn?"🍱":"🥡"}</span></div>
+  <div class="taskRow tkP"><span class="no">2</span><div class="tinfo"><div class="tname">学习 10 分钟</div><div class="tbar"><i style="width:${t2/10*100}%"></i></div></div><span class="txp">25xp</span><span class="tfood">${t2>=10?"🍦":"🍭"}</span></div>
+  <div class="taskRow tkB"><span class="no">3</span><div class="tinfo"><div class="tname">复习 10 个单词</div><div class="tbar"><i style="width:${t3/10*100}%"></i></div></div><span class="txp">25xp</span><span class="tfood">${t3>=10?"🍰":"🍪"}</span></div>
+  <div class="secT"><b><span class="bar"></span>学英文</b></div>
+  ${aiOk?"":`<div class="emmaBox" style="margin:0 0 12px"><b>💡</b> 先到「接口设置」填入 API Key，AI 老师就能上线啦。</div>`}
+  <div class="tileGrid">
+    <div class="tile tileO" onclick="openChat('practice')"><div class="tt">口语对练</div><div class="ts">和 AI 老师英语聊天 · 可语音</div><span class="ico">💬</span></div>
+    <div class="tile tileP" onclick="openChat('grammar')"><div class="tt">语法讲解</div><div class="ts">六年级语法一问就懂</div><span class="ico">📝</span></div>
+    <div class="tile tileB" onclick="openChat('extend')"><div class="tt">词汇拓展</div><div class="ts">把单词画进脑子里</div><span class="ico">🧩</span></div>
+    <div class="tile tileG" onclick="openChat('writing')"><div class="tt">AI 写作</div><div class="ts">作文批改打分 · 中考标准</div><span class="ico">✍️</span></div>
+    <div class="tile tileV" onclick="openSheet(translateSheetHtml())"><div class="tt">英汉互译</div><div class="ts">本册词库离线互查</div><span class="ico">🔁</span></div>
+  </div>
+  <div class="secT"><b><span class="bar"></span>看世界</b></div>
+  <div class="tileGrid">
+    <div class="tile tileB" onclick="openChat('qa')"><div class="tt">百科问答</div><div class="ts">十万个为什么 · 有问必答</div><span class="ico">❓</span></div>
+    <div class="tile tileY tileO" onclick="vPhonics()"><div class="tt">拼读规律</div><div class="ts">见词能读的秘密</div><span class="ico">🧩</span></div>
+  </div>`;
+}
+const PET_CUTE=["{cry}~ I love you, EMMA!","{cry} {cry}! You are the best!","Purr~ Pet me again, please!","{cry}! I'm so happy with you!","Hugs! Can we play a little more?","{cry}~ EMMA is my favorite person!"];
+function petTap(){
+  const el=document.getElementById("petImgEl");
+  if(el){ el.classList.remove("cute"); void el.offsetWidth; el.classList.add("cute"); }
+  const line=PET_CUTE[Math.floor(Math.random()*PET_CUTE.length)].replace(/\{cry\}/g,petCry());
+  petSay(line);
+  const t=document.getElementById("petLineTxt"); if(t)t.textContent=line;
+  spawnHearts();
+  petSpeakLine();
+}
+function spawnHearts(){
+  const track=document.querySelector(".petTrack"); if(!track)return;
+  const el=document.getElementById("petImgEl");
+  const baseLeft=el?(el.getBoundingClientRect().left-track.getBoundingClientRect().left):60;
+  for(let i=0;i<6;i++){
+    const h=document.createElement("span"); h.className="heartFx";
+    h.textContent=["💕","💖","💗","✨"][i%4];
+    h.style.left=(baseLeft+16+Math.random()*44)+"px";
+    h.style.bottom=(44+Math.random()*24)+"px";
+    h.style.animationDelay=(i*0.12)+"s";
+    track.appendChild(h); setTimeout(()=>h.remove(),1900);
+  }
+}
+function sheetPet(){
+  openSheet(`<h3>宠物换装与改名</h3>
+  <div class="petGrid" id="petGrid">
+  ${Object.keys(PET_TYPES).map(k=>`<div class="petOpt ${S.pet.type===k?"on":""}" data-k="${k}" onclick="pickPetType('${k}')"><div class="pe">${PET_TYPES[k].stages[PET_TYPES[k].stages.length-1]}</div><div class="pn">${PET_TYPES[k].name}</div></div>`).join("")}
+  </div>
+  <div class="fRow"><label>宠物的名字（可以随时改）</label>
+  <input id="petNameIn" value="${esc(S.pet.name)}" maxlength="12" placeholder="给它起个名字吧"></div>
+  <button class="btn3d" onclick="savePet()">保存</button>
+  <div style="height:6px"></div>`);
+}
+function pickPetType(k){ S.pet.type=k; save();
+  document.querySelectorAll(".petOpt").forEach(e=>e.classList.toggle("on",e.dataset.k===k));
+}
+function savePet(){
+  const n=document.getElementById("petNameIn").value.trim();
+  if(n)S.pet.name=n; save();
+  petSay(petCry()+" Hi! I'm "+S.pet.name+"! Nice to meet you!");
+  closeSheet(); toast("宠物已更新 "+petEmoji()); render();
+}
+/* ---------- 每日打卡 ---------- */
+function checkIn(){
+  const t=todayStr();
+  if(S.checkin.date===t){ toast("今天已经打卡啦，明天再来 💛"); return; }
+  if(S.checkin.date===addDays(t,-1))S.checkin.streak=(S.checkin.streak||0)+1;
+  else S.checkin.streak=1;
+  S.checkin.date=t;
+  const bonus=10;
+  addXp(bonus);
+  petSay(petCry()+" Daily check-in done! +"+bonus+" xp! You're my hero!");
+  toast("📅 打卡成功！连续 "+S.checkin.streak+" 天 · +"+bonus+"xp");
+  render();
+}
+/* ---------- 宠物图鉴 ---------- */
+function sheetPetBook(){
+  const cur=S.pet.type, L=level();
+  const rows=Object.keys(PET_TYPES).map(k=>{
+    const t=PET_TYPES[k], stageIdx=Math.min(Math.floor((L-1)/2),t.stages.length-1);
+    const stages=t.stages.map((s,i)=>`<div class="pbStage ${k===cur&&i===stageIdx?"on":""}"><span class="pbE">${s}</span><span class="pbS">${i===0?"幼崽":i===t.stages.length-1?"成体":"成长"}</span></div>`).join("");
+    return `<div class="pbRow"><div class="pbHead">${t.stages[t.stages.length-1]} <b>${t.name}</b>${k===cur?' <span class="pbCur">当前</span>':""}</div><div class="pbStages">${stages}</div></div>`;
+  }).join("");
+  openSheet(`<h3>📖 宠物图鉴</h3>
+  <div class="muted" style="margin:-4px 0 12px">每种宠物都会随等级进化，好好学习就能看它长大！当前 Lv${L}（${petRank().e} ${petRank().t}）。</div>
+  ${rows}
+  <div style="height:6px"></div>`);
+}
+function translateSheetHtml(){
+  return `<h3>英汉互译（本册词库）</h3>
+  <div class="searchBar" style="box-shadow:none;border:2px solid #EFE6CC"><span class="sIco">🔍</span><input id="trIn" placeholder="输入英文或中文" oninput="doTranslate(this.value)"></div>
+  <div id="trRes" style="min-height:80px"><div class="muted" style="text-align:center;padding:20px">输入后立即翻译</div></div><div style="height:6px"></div>`;
+}
+function doTranslate(q){
+  q=q.trim().toLowerCase(); const box=document.getElementById("trRes");
+  if(!q){box.innerHTML='<div class="muted" style="text-align:center;padding:20px">输入后立即翻译</div>';return;}
+  const hits=ALL.filter(w=>w.w.toLowerCase()===q||w.zh.includes(q)||w.w.toLowerCase().startsWith(q)).slice(0,8);
+  box.innerHTML=hits.length?hits.map(w=>`<div class="wRow" onclick="speak('${w.w}')"><span class="ww">${esc(w.w)}</span><span class="wp">${esc(w.ph)}</span><span class="wz">${esc(w.pos)} ${esc(w.zh)}</span></div>`).join("")
+    :'<div class="muted" style="text-align:center;padding:20px">本册词库未收录该词（词库外可用「词汇拓展」问 AI）</div>';
+}
+
+/* ==================== view: 我的 ==================== */
+function streakDays(){ let n=0,d=todayStr(); while((S.minutes[d]||0)>0.1){ n++; d=addDays(d,-1);} return n; }
+function vMe(){
+  const learned=learnedList().length, mastered=masteredList().length;
+  return `
+  <div class="topbar"><div class="ttl"><span class="mascot">${petEmoji()}</span>我的</div></div>
+  <div class="card" style="display:flex;align-items:center;gap:14px">
+    <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(150deg,#C9B3FF,#9B7BFF);display:flex;align-items:center;justify-content:center;font-size:32px">${esc((profileById(curPid)||{}).avatar||"🧒")}</div>
+    <div style="flex:1"><b style="font-size:19px">${esc(curProfileName())}</b><div class="muted" style="margin-top:3px">${esc(BOOK_META[S.book].title)} · 沪教版五四</div></div>
+    <div style="text-align:center"><div style="font-size:22px;font-weight:900;color:var(--orange)">${S.xp}</div><div class="muted" style="font-size:11px">总 xp</div></div>
+  </div>
+  <div class="card">
+    <div class="statRow" style="margin:0">
+      <div><div class="n">${learned}</div><div class="l">已学单词</div></div>
+      <div><div class="n dotG">${mastered}</div><div class="l">已掌握</div></div>
+      <div><div class="n dotO">${streakDays()}</div><div class="l">连续学习(天)</div></div>
+      <div><div class="n">Lv${level()}</div><div class="l">${esc(S.pet.name)}等级</div></div>
+    </div>
+  </div>
+  <div class="card" style="cursor:pointer" onclick="switchProfile()"><b>🔄 切换档案</b><div class="muted" style="margin-top:4px">当前：${esc(curProfileName())} · 返回档案选择页</div></div>
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+      <b>💾 本机存档</b>
+      <span class="cbRow"><span class="${cbDotCls()}"></span>${esc(syncStatusText())}</span>
+    </div>
+    <div class="muted" id="cbStateLine" style="margin-top:6px">${cbStateHtml()}</div>
+    ${CLOUD_OFF
+      ? '<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn2" onclick="switchProfile()">切换档案</button></div>'
+      : `<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+      <button class="btn2" onclick="manualSync()">立即同步</button>
+      ${CB.online
+        ? '<button class="btn2" onclick="unbindCloud()">解除绑定</button><button class="btn2" onclick="cbLogoutFlow()">退出登录</button>'
+        : '<button class="btn2" onclick="openCloudLogin()">登录云账号</button>'}
+    </div>`}
+  </div>
+  <div class="card" style="cursor:pointer" onclick="sheetBookSwitch()"><b>📚 教材库</b><div class="muted" style="margin-top:4px">已收录 ${BOOK_ORDER.filter(bookAvail).length}/${BOOK_ORDER.length} 册 · 当前：${esc(BOOK_META[S.book].title)}</div></div>
+  <div class="card" style="cursor:pointer" onclick="sheetPet()"><b>${petEmoji()} 我的宠物</b><div class="muted" style="margin-top:4px">${esc(S.pet.name)} · 点击换装改名</div></div>
+  <div class="card" style="cursor:pointer" onclick="sheetAISet()"><b>🤖 AI 接口设置</b><div class="muted" style="margin-top:4px">${S.ai.key?"已配置 · "+esc(S.ai.model):"未配置 · 点击填入 API Key"}</div></div>
+  <div class="card" style="cursor:pointer" onclick="openSheet(dataNoteHtml())"><b>📋 词库数据说明</b><div class="muted" style="margin-top:4px">来源与可信度说明</div></div>
+  <div class="card" style="cursor:pointer" onclick="exportData()"><b>💾 导出学习进度</b><div class="muted" style="margin-top:4px">保存为 JSON 文件，可传到另一台设备</div></div>
+  <div class="card" style="cursor:pointer" onclick="importData()"><b>📥 导入学习进度</b><div class="muted" style="margin-top:4px">选择之前导出的 JSON 文件恢复进度（会覆盖本机当前档案）</div></div>
+  <div class="card" style="cursor:pointer" onclick="resetAll()"><b style="color:#D64545">🗑 清空全部数据</b><div class="muted" style="margin-top:4px">谨慎操作，不可恢复</div></div>
+  <div class="muted" style="text-align:center;margin-top:8px">${CLOUD_OFF?"EMMA 英语乐园 v4.1 · 单机版 💛":"EMMA 英语乐园 v4.0 · 云同步多档案版 💛"}</div>`;
+}
+function dataNoteHtml(){
+  const lines=BOOK_ORDER.filter(bookAvail).map(id=>{
+    const b=BOOKS[id]; const cnt=b.units.reduce((a,u)=>a+u.words.length,0);
+    return `· ${BOOK_META[id].title}：${b.units.length} 单元 / ${cnt} 词${b.note?"（"+esc(b.note)+"）":""}`;
+  }).join("<br>");
+  return `<h3>词库数据说明</h3><div style="font-size:14px;line-height:2">
+  教材体系：上教社《牛津上海版》（五四制）六年级～九年级。<br>${lines}<br>
+  课文原文与官方音频因版权原因不内置，请配合「沪学习」App 使用。</div>
+  <div style="height:14px"></div><button class="btn3d" onclick="closeSheet()">知道了</button>`;
+}
+function exportData(){
+  const blob=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="emma-"+curProfileName()+"-"+todayStr()+".json"; a.click();
+  toast("进度已导出 💾");
+}
+function importData(){
+  const inp=document.createElement("input");
+  inp.type="file"; inp.accept=".json,application/json";
+  inp.style.display="none";
+  inp.onchange=()=>{
+    const f=inp.files&&inp.files[0]; if(!f)return;
+    const fr=new FileReader();
+    fr.onload=()=>{
+      try{
+        const d=JSON.parse(fr.result);
+        if(!d||typeof d!=="object"||(d.xp===undefined&&!d.books&&!d.words&&!d.minutes))throw new Error("不是有效的进度文件");
+        if(!confirm("导入将覆盖当前档案「"+curProfileName()+"」的全部进度，确定继续？"))return;
+        S=d; normalizeState(); save(); render();
+        toast("导入成功 ✓ "+curProfileName());
+      }catch(e){ toast("❌ 文件无法解析："+e.message); }
+    };
+    fr.readAsText(f);
+  };
+  document.body.appendChild(inp); inp.click(); setTimeout(()=>inp.remove(),1000);
+}
+function resetAll(){ if(confirm("确定清空当前档案「"+curProfileName()+"」的全部学习数据？此操作不可恢复！")){ localStorage.removeItem(DATA_PREFIX+curPid); location.reload(); } }
+
+/* ==================== bottom sheet ==================== */
+function openSheet(html){ document.getElementById("sheet").innerHTML='<div class="grab"></div><button class="sheetClose" aria-label="关闭" onclick="closeSheet()">×</button>'+html; document.getElementById("sheet").style.display="block"; document.getElementById("sheetBk").style.display="block"; }
+function closeSheet(){ document.getElementById("sheet").style.display="none"; document.getElementById("sheetBk").style.display="none"; CHAT=null; if("speechSynthesis" in window)speechSynthesis.cancel(); if(audioEl){audioEl.pause();audioEl.currentTime=0;} }
+
+/* ==================== learning session ==================== */
+let SES=null;
+function startSession(mode,unitId){
+  let list=[], phases;
+  if(mode==="new"){ list=newBatch(); phases=["show","choice","spell","read"]; if(!list.length)return toast("今天的生词都学完啦，去复习一下吧 🎉"); }
+  else if(mode==="review"){ list=reviewBatch(); phases=["choice","spell"]; if(!list.length)return toast("今天没有到期要复习的词，太棒了 ✨"); }
+  else if(mode==="ulearn"){ list=ALL.filter(w=>w.unit===unitId); phases=["show","choice","spell","read"]; }
+  else if(mode==="ureview"){ list=ALL.filter(w=>w.unit===unitId&&(BS().words[widOf(w)]||{}).learned); phases=["choice","spell"]; if(!list.length)return toast("这个单元还没有已学的单词"); }
+  else if(mode==="challenge"){ list=[...ALL].sort(()=>Math.random()-.5).slice(0,15); phases=["choice","spell"]; }
+  else if(mode==="wrong"){ list=wrongList(); phases=["choice","spell"]; if(!list.length)return toast("错题本是空的，继续保持 👏"); }
+  else if(mode==="fav"){ list=favList(); phases=["choice","spell"]; if(!list.length)return toast("还没有收藏单词，去单词书点 ☆ 吧"); }
+  else if(mode==="read"){ list=learnedList().length?[...learnedList()].sort(()=>Math.random()-.5).slice(0,10):ALL.slice(0,10); phases=["read"]; }
+  SES={mode,list,idx:0,phase:0,phases,results:{},xp:0,startT:Date.now()};
+  document.getElementById("session").style.display="block";
+  renderStep();
+}
+function endSession(){
+  const mins=(Date.now()-SES.startT)/60000;
+  const d=todayStr(); S.minutes[d]=(S.minutes[d]||0)+mins;
+  let correct=0,total=0;
+  for(const id in SES.results){ total++; if(SES.results[id])correct++; }
+  if(SES.mode==="new"||SES.mode==="ulearn"){ BS().claimed["new:"+d+"_cnt"]=(BS().claimed["new:"+d+"_cnt"]||0)+SES.list.length; }
+  else { BS().claimed["rev:"+d+"_cnt"]=(BS().claimed["rev:"+d+"_cnt"]||0)+SES.list.length; }
+  addXp(correct*2+(total&&correct/total>=0.8?10:0));
+  checkTasks(); save();
+  const stars=total?Math.round(correct/total*3):0;
+  if(correct>0){ petPraise(); }
+  const wrongIds=Object.keys(SES.results).filter(id=>!SES.results[id]);
+  document.getElementById("sessionWrap").innerHTML=`
+    <div class="sHead"><button class="sClose" onclick="closeSession()">✕</button><div class="sProg"><i style="width:100%"></i></div></div>
+    <div class="sCard">
+      <div style="font-size:54px">${stars>=3?"🏆":stars>=2?"🎉":"💪"}</div>
+      <div class="resStar">${"★".repeat(stars)}${"☆".repeat(3-stars)}</div>
+      <div style="font-size:19px;font-weight:900;margin:10px 0 4px">${SES.mode==="new"?"新学完成！":"挑战完成！"}</div>
+      <div class="muted">答对 ${correct}/${total} · 用时 ${Math.max(1,Math.round(mins))} 分钟</div>
+      ${wrongIds.length?`<div style="margin-top:14px;text-align:left"><b style="font-size:14px">📕 已加入错词本：</b><div style="margin-top:6px">${wrongIds.map(id=>`<span class="exWord" onclick="speak('${byId[id].w}')">${esc(byId[id].w)} 🔊</span>`).join("")}</div></div>`:""}
+      <div style="height:18px"></div>
+      <button class="btn3d" onclick="closeSession()">返回首页</button>
+      <div style="height:10px"></div>
+      <button class="btn2" style="width:100%" onclick="closeSession();startSession('${SES.mode==="new"?"review":"new"}')">${SES.mode==="new"?"去复习":"再学一组"}</button>
+    </div>`;
+  if(stars>=2)confetti();
+}
+function closeSession(){ document.getElementById("session").style.display="none"; SES=null; if("speechSynthesis" in window)speechSynthesis.cancel(); render(); }
+function curWord(){ return SES.list[SES.idx]; }
+function renderStep(){
+  const w=curWord(), ph=SES.phases[SES.phase];
+  const head=`<div class="sHead"><button class="sClose" onclick="closeSession()">✕</button><div class="sProg"><i style="width:${(SES.idx)/(SES.list.length)*100}%"></i></div><span style="font-weight:900;color:#8A6100;font-size:13px">${SES.idx+1}/${SES.list.length}</span></div>`;
+  let body="";
+  if(ph==="show"){
+    body=`<div class="sCard">
+      <div class="muted" style="margin-bottom:10px">第 1 步 · 认识新单词（${esc(w.unitTitle)}）</div>
+      <div class="bigWord">${esc(w.w)}</div>
+      <div class="phon">${esc(w.ph)}</div>
+      <div class="zhBig">${esc(w.pos)} ${esc(w.zh)}</div>
+      <div style="margin:20px 0"><button class="spkBtn" onclick="speak('${w.w}')">🔊</button></div>
+      ${w.emma?`<div class="emmaBox"><b>🎨 EMMA 小卡片：</b>${esc(w.emma)}</div>`:""}
+      <div style="height:18px"></div>
+      <button class="btn3d" onclick="nextPhase()">我认识它了 →</button>
+    </div>`;
+    setTimeout(()=>speak(w.w),400);
+  }
+  else if(ph==="choice"){
+    const pool=ALL.filter(x=>x.unit===w.unit&&x.w!==w.w);
+    const extra=ALL.filter(x=>x.unit!==w.unit);
+    const opts=[w,...pool.sort(()=>Math.random()-.5).slice(0,3)];
+    while(opts.length<4&&extra.length)opts.push(extra.splice(Math.floor(Math.random()*extra.length),1)[0]);
+    opts.sort(()=>Math.random()-.5);
+    body=`<div class="sCard">
+      <div class="muted" style="margin-bottom:14px">听发音，选出正确的意思</div>
+      <button class="spkBtn" onclick="speak('${w.w}')">🔊</button>
+      <div style="height:16px"></div>
+      ${opts.map(o=>`<button class="optBtn" data-ok="${o.w===w.w?1:0}" onclick="ansChoice(this)">${esc(o.pos)} ${esc(o.zh)}</button>`).join("")}
+    </div>`;
+    setTimeout(()=>speak(w.w),350);
+  }
+  else if(ph==="spell"){
+    const letters=w.w.replace(/[^a-zA-Z'-]/g,"").split("");
+    const shuffled=[...letters].sort(()=>Math.random()-.5);
+    SES.spell={target:letters.join("").toLowerCase(),picked:[]};
+    body=`<div class="sCard">
+      <div class="muted" style="margin-bottom:6px">听发音，拼出单词</div>
+      <div class="zhBig">${esc(w.pos)} ${esc(w.zh)}</div>
+      <div style="margin:14px 0 4px"><button class="spkBtn" style="width:52px;height:52px;font-size:22px" onclick="speak('${w.w}')">🔊</button></div>
+      <div class="answerLine" id="slots">${letters.map(()=>'<span class="slot"></span>').join("")}</div>
+      <div class="tiles" id="tileBox">${shuffled.map(l=>`<span class="tileL" onclick="pickTile(this)">${esc(l)}</span>`).join("")}</div>
+      <div class="kbHint muted" style="margin-bottom:8px">⌨️ 可直接用键盘输入，Backspace 撤销</div>
+      <div style="display:flex;gap:10px">
+        <button class="btn2" style="flex:1" onclick="spellUndo()">⌫ 撤销</button>
+        <button class="btn2" style="flex:1" onclick="spellHint()">💡 提示</button>
+        <button class="btn2" style="flex:1" onclick="spellGiveUp()">跳过</button>
+      </div>
+    </div>`;
+    setTimeout(()=>speak(w.w),350);
+  }
+  else if(ph==="read"){
+    body=`<div class="sCard">
+      <div class="muted" style="margin-bottom:10px">大声读出来！${SR?"读完自动评分":"（当前浏览器不支持语音评分，请自评）"}</div>
+      <div class="bigWord">${esc(w.w)}</div>
+      <div class="phon">${esc(w.ph)}</div>
+      <div class="zhBig">${esc(w.pos)} ${esc(w.zh)}</div>
+      <div style="display:flex;gap:18px;justify-content:center;margin:22px 0">
+        <button class="spkBtn" style="background:linear-gradient(180deg,#9CC4FF,#5E9BFF);box-shadow:0 4px 0 #3D76D6" onclick="speak('${w.w}')">🔊</button>
+        ${SR?`<button class="spkBtn" id="micBtn" style="background:linear-gradient(180deg,#FF9FC7,#F56AA0);box-shadow:0 4px 0 #D14E82" onclick="doRec()">🎙️</button>`:""}
+      </div>
+      <div id="recRes" class="muted"></div>
+      ${SR?"":`<div style="display:flex;gap:10px;margin-top:14px"><button class="btn2" style="flex:1" onclick="readSelf(true)">✅ 我读得不错</button><button class="btn2" style="flex:1" onclick="readSelf(false)">🔁 还要练习</button></div>`}
+      <div style="height:14px"></div>
+      <button class="btn3d" onclick="nextWord()">下一个 →</button>
+    </div>`;
+    setTimeout(()=>speak(w.w),400);
+  }
+  document.getElementById("sessionWrap").innerHTML=head+body;
+}
+function nextPhase(){ SES.phase++; if(SES.phase>=SES.phases.length)return nextWord(); renderStep(); }
+function markResult(ok){
+  const id=widOf(curWord()); const r=recOf(id,true);
+  const isNew=!r.learned;
+  if(isNew){ r.learned=true; r.box=ok?1:0; r.due=addDays(todayStr(),1); if(!ok)r.wrong++; }
+  else if(ok){ r.ok++; r.box=Math.min(5,r.box+1); r.due=addDays(todayStr(),INT[Math.min(r.box,INT.length)-1]); }
+  else { r.box=0; r.due=addDays(todayStr(),1); r.wrong++; }
+  SES.results[id]=(SES.results[id]||false)||ok;
+  save();
+}
+function nextWord(){ SES.idx++; SES.phase=0; if(SES.idx>=SES.list.length)return endSession(); renderStep(); }
+function ansChoice(btn){
+  const ok=btn.dataset.ok==="1";
+  document.querySelectorAll(".optBtn").forEach(b=>{ b.disabled=true; if(b.dataset.ok==="1")b.classList.add("right"); });
+  if(!ok){ btn.classList.add("wrong"); btn.classList.add("shake"); speak(curWord().w); }
+  else { speakPraise(); }
+  markResult(ok);
+  setTimeout(()=>nextPhase(), ok?900:1500);
+}
+function pickTile(el){
+  if(el.classList.contains("sel"))return;
+  el.classList.add("sel");
+  SES.spell.picked.push(el);
+  const slots=document.querySelectorAll("#slots .slot");
+  slots[SES.spell.picked.length-1].textContent=el.textContent;
+  slots[SES.spell.picked.length-1].classList.add("fill");
+  if(SES.spell.picked.length===SES.spell.target.length){
+    const got=SES.spell.picked.map(e=>e.textContent).join("").toLowerCase();
+    const ok=got===SES.spell.target;
+    if(ok){ markResult(true); speakPraise(); toast("拼对啦 ✨"); setTimeout(()=>nextPhase(),900); }
+    else{ const sl=document.getElementById("slots"); sl.classList.add("shake"); speak(curWord().w);
+      setTimeout(()=>{ SES.spell.picked.forEach(e=>e.classList.remove("sel")); SES.spell.picked=[]; slots.forEach(s=>{s.textContent="";s.classList.remove("fill")}); sl.classList.remove("shake"); },700);
+    }
+  }
+}
+function spellUndo(){ const p=SES.spell.picked.pop(); if(!p)return; p.classList.remove("sel");
+  const slots=document.querySelectorAll("#slots .slot"); const s=slots[SES.spell.picked.length]; if(s){s.textContent="";s.classList.remove("fill");} }
+function spellHint(){ const need=SES.spell.target[SES.spell.picked.length]; if(!need)return;
+  const el=[...document.querySelectorAll("#tileBox .tileL")].find(e=>!e.classList.contains("sel")&&e.textContent.toLowerCase()===need);
+  if(el)pickTile(el); }
+function spellGiveUp(){ markResult(false); toast("正确拼写："+curWord().w); speak(curWord().w); setTimeout(()=>nextPhase(),1400); }
+function doRec(){
+  const word=curWord().w;
+  const btn=document.getElementById("micBtn"), res=document.getElementById("recRes");
+  if(!btn||!res)return;
+  if(srBusy){ toast("正在录音，请先说完"); return; }
+  SR=makeRecognition();
+  if(!SR){ res.textContent="当前浏览器不支持语音评分，请改用 Safari 或 Chrome"; return; }
+  srBusy=true; btn.disabled=true; res.textContent="🎙️ 正在听…请大声读";
+  SR.lang="en-US";
+  SR.onstart=()=>{ res.textContent="🎙️ 正在录音…请读出："+word; };
+  SR.onresult=e=>{
+    const said=e.results[0]&&e.results[0][0]?e.results[0][0].transcript.toLowerCase().replace(/[^a-z'\s]/g,"").trim():"";
+    const target=word.toLowerCase();
+    const ok=!!said&&(said.split(/\s+/).includes(target)||said.replace(/\s/g,"")===target.replace(/\s/g,""));
+    res.innerHTML=said?(ok?`✅ 听到你读「${esc(said)}」，太棒了！`:`🔁 听到的是「${esc(said)}」，再试试？点 🎙️ 重读`):"没有听到清晰发音，请再试一次";
+    markResult(ok); if(ok)speakPraise(); else speakCheer();
+  };
+  SR.onerror=e=>{ res.textContent=e.error==="not-allowed"?"麦克风权限被拒绝，请在浏览器设置中允许":e.error==="no-speech"?"没听到声音，请靠近麦克风再试":"录音失败（"+(e.error||"未知错误")+"），请再试一次"; };
+  SR.onend=()=>{ srBusy=false; btn.disabled=false; };
+  try{ SR.start(); }catch(e){ srBusy=false; btn.disabled=false; res.textContent="录音启动失败，请再点一次"; }
+}
+function readSelf(ok){ markResult(ok); if(ok)speakPraise(); else speakCheer(); toast(ok?"真棒！✨":"没关系，加入错词本多练习"); setTimeout(()=>nextWord(),900); }
+
+/* ==================== time tracking ==================== */
+setInterval(()=>{ if(!S||!curPid)return; if(document.visibilityState==="visible"){ const d=todayStr(); S.minutes[d]=(S.minutes[d]||0)+0.5; checkTasks(); save(); if(curTab==="ai"&&!document.getElementById("sheet").style.display)render(); } },30000);
+
+/* ==================== 键盘拼写 ==================== */
+document.addEventListener("keydown",e=>{
+  if(!SES||SES.phases[SES.phase]!=="spell"||!SES.spell)return;
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  if(e.key==="Backspace"){ e.preventDefault(); spellUndo(); return; }
+  if(/^[a-zA-Z'-]$/.test(e.key)){
+    const el=[...document.querySelectorAll("#tileBox .tileL")].find(t=>!t.classList.contains("sel")&&t.textContent.toLowerCase()===e.key.toLowerCase());
+    if(el)pickTile(el);
+  }
+});
+
+/* ==================== 档案门（家庭多账号） ==================== */
+let pendingPid=null, tmpAvatar=null;
+let pad={mode:"verify",expected:"",buf:"",first:"",onOk:null,title:""};
+
+function showGate(){ document.getElementById("gate").style.display="block"; renderGate(); }
+/* 词库缺失时给出「可见且阻塞」的提示。
+   以前只是往 #page 里写一句话，而 #page 会被全屏的档案门盖住，
+   结果用户看到的是「界面正常、点档案没反应」，根本不知道是少了文件。 */
+function showWordsError(){
+  const g=document.getElementById("gate");
+  g.style.display="block";
+  g.innerHTML='<div class="gwrap">'+
+    '<div class="glogo">⚠️</div>'+
+    '<h2>词库文件没加载到</h2>'+
+    '<div class="gsub">缺少 words-data.js</div>'+
+    '<div class="gcloud" style="text-align:left;line-height:1.9">'+
+      '应用要正常工作，<b>words-data.js</b> 必须和 <b>index.html</b> 放在<b>同一个目录</b>。'+
+      '<div style="height:10px"></div>请到「静态网站托管 → 文件管理」核对三件事：<br>'+
+      '① 文件列表里<b>有没有</b> words-data.js<br>'+
+      '② 它的大小应该是 <b>约 140KB（143,776 字节）</b><br>'+
+      '③ 它和 index.html 在同一层（都在根目录）'+
+      '<div style="height:10px"></div>注意：<code>*_words.json</code> 那几个文件是词库的<b>源数据</b>，'+
+      '应用运行时并不读它们，传了也没用——必须传 <code>words-data.js</code>。'+
+    '</div>'+
+    '<div class="gtip">补齐文件后刷新本页即可。此提示不影响本机已保存的学习进度。</div>'+
+  '</div>';
+}
+function hideGate(){ document.getElementById("gate").style.display="none"; }
+function renderGate(){
+  const cards=HUB.profiles.map(p=>`
+    <div class="profCard" onclick="tapProfile('${p.id}')">
+      ${p.user?'<span class="lk">☁️</span>':(p.pin?'<span class="lk">🔒</span>':"")}
+      <div class="av">${esc(p.avatar||"🧒")}</div>
+      <div class="nm">${esc(p.name)}</div>
+    </div>`).join("");
+  document.getElementById("gate").innerHTML=`<div class="gwrap">
+    <div class="glogo">🌈</div>
+    <h2>EMMA 英语乐园</h2>
+    <div class="gsub">请选择你的档案</div>
+    <div class="profGrid">${cards}</div>
+    <div class="gcloud" id="gateSyncLine">${gateSyncHtml()}</div>
+    <button class="gmanage" onclick="openParentPanel()">⚙️ 家长管理</button>
+    <div class="gtip">每个孩子的学习进度相互独立${CB.online?"，已开启云端同步，换设备也能接着学":"，目前仅保存在本机浏览器中"}。${CB.online?"<br>换设备时用同一云账号登录即可接着学。":"<br>换手机或 iPad 时，可用「家长管理」里的导出/导入迁移进度。"}</div>
+  </div>`;
+}
+function tapProfile(id){
+  const p=profileById(id); if(!p)return;
+  if(p.pin){ pendingPid=id; pad={mode:"verify",expected:p.pin,buf:"",first:"",onOk:null,title:p.name+" 的 PIN 码"}; drawPad(); }
+  else enterProfile(id);
+}
+async function enterProfile(id,skipPull){
+  const p=profileById(id); if(!p)return;
+  if(!WORDS_OK){ showWordsError(); toast("词库未加载：请先补齐 words-data.js"); return; }
+  curPid=id;
+  S=loadProfileData(id);
+  normalizeState();
+  loadBookWords();
+  hideGate(); closeGateSheet();
+  curTab="plan";
+  renderTabbar(); render();
+  petGreet();
+  // 打开时同步：拉取云端并与本机合并（skipPull 用于「刚登录完」的场景，紧接着会手动同步）
+  if(!skipPull&&CB.ready&&CB.online&&cbBound()){
+    const ok=await cbSync(true);
+    if(ok)render();
+  }
+}
+async function switchProfile(){
+  clearTimeout(pushTimer);
+  save();
+  if(CB.ready&&CB.online&&cbBound())await cbSync(true);   // 离开前把当前档案同步上去
+  curPid=null; S=null; curTab="plan"; showGate();
+}
+function curProfileName(){ const p=profileById(curPid); return p?p.name:"—"; }
+
+/* ---------- PIN 键盘 ---------- */
+function drawPad(){
+  const gs=document.getElementById("gateSheet");
+  gs.style.display="block";
+  gs.innerHTML=`<div class="gsBox">
+    <h3>${esc(pad.title)}</h3>
+    <div class="pinDots" id="pinDots">${[0,1,2,3].map(()=>"<i></i>").join("")}</div>
+    <div class="pinKeys">
+      ${[1,2,3,4,5,6,7,8,9].map(n=>`<button onclick="padKey('${n}')">${n}</button>`).join("")}
+      <button onclick="closeGateSheet()" style="font-size:15px;color:#A8830F">取消</button>
+      <button onclick="padKey('0')">0</button>
+      <button onclick="padKey('del')">⌫</button>
+    </div>
+    <div class="pinErr" id="pinErr"></div>
+  </div>`;
+}
+function padKey(k){
+  const err=document.getElementById("pinErr");
+  if(k==="del")pad.buf=pad.buf.slice(0,-1);
+  else if(pad.buf.length<4)pad.buf+=k;
+  document.querySelectorAll("#pinDots i").forEach((d,i)=>d.classList.toggle("on",i<pad.buf.length));
+  if(pad.buf.length<4)return;
+  const val=pad.buf;
+  if(pad.mode==="verify"){
+    if(val===pad.expected){ const cb=pad.onOk; pad.buf=""; if(cb)cb(val); else { const id=pendingPid; pendingPid=null; closeGateSheet(); enterProfile(id); } }
+    else{
+      if(err)err.textContent="PIN 不对，再试一次";
+      pad.buf="";
+      setTimeout(()=>document.querySelectorAll("#pinDots i").forEach(d=>d.classList.remove("on")),260);
+    }
+  }else{
+    if(!pad.first){
+      pad.first=val; pad.buf="";
+      document.querySelectorAll("#pinDots i").forEach(d=>d.classList.remove("on"));
+      document.querySelector("#gateSheet h3").textContent="再输入一次确认";
+    }else if(val===pad.first){
+      const cb=pad.onOk; pad.buf=""; pad.first=""; if(cb)cb(val);
+    }else{
+      if(err)err.textContent="两次不一致，请重新设置";
+      pad.buf=""; pad.first="";
+      document.querySelectorAll("#pinDots i").forEach(d=>d.classList.remove("on"));
+      document.querySelector("#gateSheet h3").textContent="设置家长 PIN";
+    }
+  }
+}
+function closeGateSheet(){ const gs=document.getElementById("gateSheet"); gs.style.display="none"; gs.innerHTML=""; pad.buf=""; pad.first=""; pendingPid=null; pwCtx=null; }
+
+/* ---------- 家长管理 ---------- */
+function openParentPanel(){
+  if(!HUB.parentPin){ pad={mode:"set",expected:"",buf:"",first:"",onOk:pin=>{ HUB.parentPin=pin; saveHub(); renderParentPanel(); },title:"设置家长 PIN"}; drawPad(); }
+  else{ pad={mode:"verify",expected:HUB.parentPin,buf:"",first:"",onOk:()=>renderParentPanel(),title:"输入家长 PIN"}; drawPad(); }
+}
+function renderParentPanel(){
+  const rows=HUB.profiles.map(p=>`
+    <div class="unitRow">
+      <div class="uic" style="background:#FFF0C4">${esc(p.avatar||"🧒")}</div>
+      <div class="uname"><b>${esc(p.name)}</b><div class="uprog">${p.user?"☁️ 云账号："+esc(p.user):"未绑定云账号"} · ${p.pin?"已设本机 PIN":"未设 PIN"}</div></div>
+      <button class="btn2" style="padding:7px 12px" onclick="editChild('${p.id}')">修改</button>
+      <button class="btn2" style="padding:7px 12px;color:#D64545" onclick="delChild('${p.id}')">删除</button>
+    </div>`).join("");
+  const gs=document.getElementById("gateSheet");
+  gs.style.display="block";
+  gs.innerHTML=`<div class="gsBox">
+    <h3>家长管理</h3>
+    <div style="font-size:13px;color:var(--muted);text-align:center;margin-bottom:10px">共 ${HUB.profiles.length} 个孩子档案</div>
+    ${rows}
+    <button class="btn3d" style="margin-top:16px" onclick="addChild()">➕ 添加孩子</button>
+    <div style="display:flex;gap:10px;margin-top:10px">
+      <button class="btn2" style="flex:1" onclick="changeParentPin()">修改家长 PIN</button>
+      <button class="btn2" style="flex:1" onclick="closeGateSheet()">关闭</button>
+    </div>
+    <div style="height:6px"></div>
+  </div>`;
+}
+function editChild(id){
+  const p=profileById(id); if(!p)return;
+  tmpAvatar=null;
+  const gs=document.getElementById("gateSheet");
+  gs.innerHTML=`<div class="gsBox">
+    <h3>编辑档案</h3>
+    <div class="fRow" style="margin-top:12px"><label>名字</label><input id="chName" maxlength="12" value="${esc(p.name)}"></div>
+    <div class="fRow"><label>选择头像</label>
+      <div id="avBox" style="display:flex;flex-wrap:wrap;gap:8px">
+        ${AVATARS.map(a=>`<span data-a="${a}" onclick="pickAvatar(this,'${a}')" style="font-size:26px;padding:6px 10px;border-radius:12px;cursor:pointer;border:2px solid ${a===(p.avatar||"🧒")?"#F0B429":"#EFE6CC"}">${a}</span>`).join("")}
+      </div>
+    </div>
+    <div class="fRow"><label>☁️ 云账号用户名（留空 = 不跨设备同步）</label>
+      <input id="chUser" maxlength="32" autocapitalize="off" spellcheck="false" value="${esc(p.user||"")}" placeholder="例如 emma">
+      <div class="muted" style="font-size:12px;margin-top:5px">需与「云开发控制台 → 身份认证 → 用户管理」里创建的账号名完全一致。1~32 位，只能用字母/数字/-/_，不能纯数字。</div></div>
+    <div class="fRow"><label>本机 4 位 PIN（离线兜底，留空 = 不设）</label>
+      <input id="chPin" maxlength="4" inputmode="numeric" value="${esc(p.pin||"")}" placeholder="例如 1234">
+      <div class="muted" style="font-size:12px;margin-top:5px">仅在云端连不上、或没绑云账号时使用。跨设备登录用的是云账号密码。</div></div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn3d" style="flex:1" onclick="saveChild('${id}')">保存</button>
+      <button class="btn2" style="flex:1" onclick="renderParentPanel()">返回</button>
+    </div>
+    <div style="height:6px"></div>
+  </div>`;
+}
+function pickAvatar(el,a){
+  tmpAvatar=a;
+  document.querySelectorAll("#avBox span").forEach(s=>s.style.borderColor=(s.dataset.a===a?"#F0B429":"#EFE6CC"));
+}
+function saveChild(id){
+  const p=profileById(id); if(!p)return;
+  const nm=document.getElementById("chName").value.trim();
+  const pin=(document.getElementById("chPin").value||"").trim();
+  const cu=(document.getElementById("chUser").value||"").trim();
+  if(cu&&!validCbUser(cu)){ toast("云账号名不合法：1~32 位，只能用字母/数字/-/_，且不能纯数字"); return; }
+  if(nm)p.name=nm;
+  if(tmpAvatar)p.avatar=tmpAvatar;
+  if(/^\d{4}$/.test(pin))p.pin=pin; else if(!pin)p.pin="";
+  if(cu!==(p.user||"")){ p.user=cu; p.uid=""; }   // 账号变了 → 清掉 uid，下次需要重新登录
+  tmpAvatar=null;
+  saveHub(); renderGate(); renderParentPanel();
+  toast("已保存 ✓");
+}
+function addChild(){
+  const id=newProfileId();
+  HUB.profiles.push({id,name:"小朋友",avatar:AVATARS[HUB.profiles.length%AVATARS.length],pin:""});
+  saveHub(); renderGate(); editChild(id);
+}
+function delChild(id){
+  if(HUB.profiles.length<=1){ toast("至少保留一个档案"); return; }
+  const p=profileById(id);
+  if(!confirm("确定删除「"+p.name+"」？该孩子的全部学习进度将永久丢失！"))return;
+  HUB.profiles=HUB.profiles.filter(x=>x.id!==id);
+  localStorage.removeItem(DATA_PREFIX+id);
+  saveHub(); renderGate(); renderParentPanel();
+}
+function changeParentPin(){
+  pad={mode:"set",expected:"",buf:"",first:"",onOk:pin=>{ HUB.parentPin=pin; saveHub(); renderParentPanel(); toast("家长 PIN 已更新"); },title:"修改家长 PIN"};
+  drawPad();
+}
+
+/* ==================== 云端同步（腾讯云开发 CloudBase） ==================== */
+/* 三条设计原则：
+   ① 本地 localStorage 永远是「真源」，云端只是同步通道 —— 云服务不可用到期的
+      时候，应用照常能学，只是不跨设备。
+   ② 每次同步都是「读云端 → 字段级合并 → 写回」，绝不整档覆盖。否则一台设备上
+      残留的旧进度会把另一台设备当天的新进度冲掉（真实丢数据场景）。
+   ③ API 密钥 S.ai.key 绝不入云。                                              */
+/* 【单机模式开关】当前应用部署在 GitHub Pages（hongsexiaoma.github.io）。
+   CloudBase 免费版无法把该域名加入「WEB 安全域名」白名单（官方社区确认报错
+   OperationDenied.FreePackageDenied），因此云端登录/数据库调用会被 CORS 拦掉。
+   故关闭云同步，应用以单机模式运行：进度只存本机 localStorage。
+   若日后升级付费档并成功加白名单，把此开关改回 false 即可恢复跨设备同步。 */
+const CLOUD_OFF=true;
+const CB_ENV="study-buddy-d2gx2hgoq367da5de";
+const CB_COL="progress";
+const CB_SDK="https://static.cloudbase.net/cloudbase-js-sdk/2.28.6/cloudbase.full.js";
+const CB_MAX_BYTES=520000;         // 单文档体积保护阈值（保守值，云数据库单文档上限待控制台确认）
+let CB={ready:false,online:false,uid:null,lastSync:0,lastErr:"",mode:"off"};
+let sdkPromise=null, pushTimer=null, syncing=false, pwCtx=null;
+
+/* ---------- SDK 懒加载：不拖慢首屏，离线时优雅降级 ---------- */
+function cbLoadSdk(){
+  if(window.cloudbase)return Promise.resolve(window.cloudbase);
+  if(sdkPromise)return sdkPromise;
+  sdkPromise=new Promise(function(res,rej){
+    const s=document.createElement("script");
+    s.src=CB_SDK; s.async=true;
+    let done=false;
+    s.onload=function(){ done=true; window.cloudbase?res(window.cloudbase):rej(new Error("SDK 加载后未挂载 cloudbase")); };
+    s.onerror=function(){ if(!done)rej(new Error("云端 SDK 下载失败（网络不可用或域名被拦截）")); };
+    document.head.appendChild(s);
+    setTimeout(function(){ if(!window.cloudbase&&!done)rej(new Error("云端 SDK 加载超时")); },15000);
+  });
+  sdkPromise.catch(function(){ sdkPromise=null; });   // 失败后允许重试
+  return sdkPromise;
+}
+async function cbInit(){
+  if(CLOUD_OFF){ CB.ready=false; CB.online=false; CB.mode="off"; return false; }   // 单机模式：不加载云端 SDK
+  if(CB.ready)return true;
+  try{
+    const cl=await cbLoadSdk();
+    const app=cl.init({env:CB_ENV});
+    CB.app=app; CB.auth=app.auth; CB.db=app.database();
+    CB.ready=true; CB.mode="ready"; CB.lastErr="";
+    const s=await cbSession();
+    if(s){ CB.online=true; CB.uid=(s.user&&(s.user.id||s.user.uid))||null; CB.mode="signed"; }
+    updateSyncChip();
+    return true;
+  }catch(e){
+    CB.ready=false; CB.online=false; CB.mode="fail";
+    CB.lastErr=(e&&e.message)?e.message:String(e);
+    updateSyncChip();
+    return false;
+  }
+}
+/* 登录态由 SDK 自动持久化在 localStorage，刷新后可直接恢复（每台设备只需首次输一次密码） */
+async function cbSession(){
+  try{
+    const r=await CB.auth.getSession();
+    return (r&&r.data&&r.data.session)||null;
+  }catch(e){ return null; }
+}
+async function cbLogin(user,pass){
+  const ok=await cbInit();
+  if(!ok)throw new Error("云服务不可用："+(CB.lastErr||"网络问题"));
+  const r=await CB.auth.signInWithPassword({username:user,password:pass});
+  if(r&&r.error)throw new Error(r.error.message||"账号或密码不正确");
+  let s=(r&&r.data&&r.data.session)||null;
+  if(!s)s=await cbSession();
+  if(!s)throw new Error("登录已通过，但未取得会话，请重试");
+  CB.uid=(s.user&&(s.user.id||s.user.uid))||null;
+  CB.online=true; CB.mode="signed"; CB.lastErr="";
+  updateSyncChip();
+  return CB.uid;
+}
+async function cbLogout(){
+  try{ await CB.auth.signOut(); }catch(e){}
+  CB.uid=null; CB.online=false; CB.mode=CB.ready?"ready":"off";
+  updateSyncChip();
+}
+
+/* ---------- 文档定位：优先用缓存的 _id，失效则按 _openid 查询 ---------- */
+function cbIdKey(){ return "emmaCbId_"+(CB.uid||"x"); }
+function cbCachedId(){ try{ return localStorage.getItem(cbIdKey()); }catch(e){ return null; } }
+function cbCacheId(id){ try{ id?localStorage.setItem(cbIdKey(),id):localStorage.removeItem(cbIdKey()); }catch(e){} }
+function cbDocOf(r){
+  const d=r&&r.data; if(!d)return null;
+  return Array.isArray(d)?(d[0]||null):d;
+}
+async function cbFetch(){
+  if(!CB.ready||!CB.online)return null;
+  const cid=cbCachedId();
+  if(cid){
+    try{
+      const d=cbDocOf(await CB.db.collection(CB_COL).doc(cid).get());
+      if(d)return d;
+    }catch(e){ /* 缓存 _id 失效，落回查询 */ }
+    cbCacheId(null);
+  }
+  const d2=cbDocOf(await CB.db.collection(CB_COL).where({_openid:"{openid}"}).get());
+  if(d2&&d2._id)cbCacheId(d2._id);
+  return d2||null;
+}
+async function cbWrite(fields){
+  const cid=cbCachedId();
+  if(cid){
+    try{ await CB.db.collection(CB_COL).doc(cid).update(fields); return true; }
+    catch(e){ cbCacheId(null); }        // 文档可能已被删除，落回新建
+  }
+  const r=await CB.db.collection(CB_COL).add(fields);
+  const nid=(r&&(r._id||r.id))||(r&&r.data&&(r.data._id||r.data.id))||null;
+  if(nid)cbCacheId(nid);
+  return true;
+}
+
+/* ---------- 字段级合并（防丢数据的核心） ---------- */
+function toCloud(o,pid){
+  const c=JSON.parse(JSON.stringify(o));
+  delete c.petLine;                       // 宠物闲聊语无同步价值
+  if(c.ai)c.ai.key="";                    // 密钥绝不入云
+  const p=profileById(pid)||{};
+  c.meta={name:p.name||"",avatar:p.avatar||"🧒"};
+  return c;
+}
+function mergeProgress(a,b){
+  if(!a)return b;
+  if(!b)return a;
+  // 偏好类字段（当前教材/宠物/音色/AI 配置）取「时间戳较新的一方」
+  const newer=((a._updated||0)>=(b._updated||0))?a:b;
+  const out=JSON.parse(JSON.stringify(newer));
+  // 累积类字段：一律取并集/最大值，绝不覆盖
+  out.xp=Math.max(a.xp||0,b.xp||0);
+  out.minutes=out.minutes||{};
+  new Set(Object.keys(a.minutes||{}).concat(Object.keys(b.minutes||{}))).forEach(function(d){
+    out.minutes[d]=Math.max((a.minutes||{})[d]||0,(b.minutes||{})[d]||0);
+  });
+  out.books=out.books||{};
+  new Set(Object.keys(a.books||{}).concat(Object.keys(b.books||{}))).forEach(function(k){
+    const A=(a.books||{})[k]||{}, B=(b.books||{})[k]||{};
+    const dst=out.books[k]||{};
+    out.books[k]=dst;
+    if(!dst.plan)dst.plan=(newer===a?A.plan:B.plan)||null;
+    if(!dst.plan)dst.plan={dailyNew:6,startDate:todayStr0()};
+    dst.words=dst.words||{};
+    new Set(Object.keys(A.words||{}).concat(Object.keys(B.words||{}))).forEach(function(id){
+      const x=(A.words||{})[id], y=(B.words||{})[id];
+      if(!x){ dst.words[id]=y; return; }
+      if(!y){ dst.words[id]=x; return; }
+      dst.words[id]={
+        learned:!!(x.learned||y.learned),                 // 学过就是学过
+        box:Math.max(x.box||0,y.box||0),                  // 掌握程度取更熟练的
+        due:(String(x.due||"")>String(y.due||""))?(x.due||""):(y.due||""),   // 复习到期取较晚
+        wrong:Math.max(x.wrong||0,y.wrong||0),
+        ok:Math.max(x.ok||0,y.ok||0),
+        fav:!!(x.fav||y.fav)
+      };
+    });
+    dst.claimed=dst.claimed||{};
+    new Set(Object.keys(A.claimed||{}).concat(Object.keys(B.claimed||{}))).forEach(function(k2){
+      dst.claimed[k2]=Math.max((A.claimed||{})[k2]||0,(B.claimed||{})[k2]||0);
+    });
+  });
+  out.ai=Object.assign({},newer.ai||{});
+  out.ai.key=(a.ai&&a.ai.key)||(b.ai&&b.ai.key)||"";      // 密钥只认本机
+  out._updated=Math.max(a._updated||0,b._updated||0);
+  return out;
+}
+
+/* ---------- 绑定校验：只有「当前档案」绑定的账号 == 当前登录账号时才同步 ---------- */
+/* 缺了这道闸，B 孩子在本机进入未绑定的档案时，会把 B 的进度合并进 A 的云端文档 */
+function cbBound(){
+  if(CLOUD_OFF)return false;
+  const p=profileById(curPid);
+  return !!(p&&p.user&&p.uid&&CB.uid&&p.uid===CB.uid);
+}
+
+/* ---------- 双向同步：读 → 合并 → 写回（push 与 pull 是同一个操作） ---------- */
+async function cbSync(silent){
+  if(!curPid||!S){ if(!silent)toast("请先选择一个档案"); return false; }
+  if(!CB.ready||!CB.online){
+    if(!silent)toast("未登录云账号，进度仅保存在本机");
+    return false;
+  }
+  if(!cbBound()){
+    if(!silent)toast("当前档案未绑定云账号，未同步");
+    return false;
+  }
+  if(syncing)return false;
+  syncing=true;
+  try{
+    const doc=await cbFetch();
+    const cloud=(doc&&doc.progress)?doc.progress:null;
+    const bookBefore=S.book;
+    if(cloud)S=mergeProgress(S,cloud);
+    // 安全阀：正在上课时不允许同步改掉「当前教材」，否则答题记录会写进另一册的词表里
+    if(SES&&S.book!==bookBefore)S.book=bookBefore;
+    S._updated=Date.now();
+    normalizeState(); loadBookWords();
+    localStorage.setItem(DATA_PREFIX+curPid,JSON.stringify(S));
+    const body={progress:toCloud(S,curPid),updated:S._updated};
+    const size=JSON.stringify(body).length;
+    if(size>CB_MAX_BYTES)throw new Error("进度 "+Math.round(size/1024)+"KB 超出单文档保护阈值，本轮未上传");
+    await cbWrite(body);
+    CB.lastSync=Date.now(); CB.lastErr="";
+    syncing=false; updateSyncChip();
+    if(!silent)toast("☁️ 同步完成");
+    return true;
+  }catch(e){
+    syncing=false;
+    CB.lastErr=(e&&e.message)?e.message:String(e);
+    updateSyncChip();
+    if(!silent)toast("云同步失败："+CB.lastErr);
+    return false;
+  }
+}
+function schedulePush(){
+  if(!CB||!CB.ready||!CB.online||!curPid||!cbBound())return;
+  clearTimeout(pushTimer);
+  pushTimer=setTimeout(function(){ cbSync(true); },4000);   // 4 秒防抖，避免答题过程高频写库
+}
+async function manualSync(){
+  const ok=await cbSync(false);
+  if(ok&&curPid)render();
+}
+
+/* ---------- 状态展示 ---------- */
+function syncStatusText(){
+  if(CLOUD_OFF)return "单机模式";
+  if(CB.mode==="fail")return "不可用";
+  if(!CB.ready)return "未连接";
+  if(!CB.online)return "未登录";
+  if(!cbBound())return "未绑定";
+  return "已同步";
+}
+function cbDotCls(){
+  if(CLOUD_OFF)return "cbDot off";
+  if(CB.mode==="fail")return "cbDot err";
+  if(CB.online&&cbBound())return "cbDot on";
+  if(CB.online||CB.ready)return "cbDot off";
+  return "cbDot";
+}
+function cbStateHtml(){
+  if(CLOUD_OFF)return "单机模式：学习进度只保存在本机，不做跨设备同步。";
+  const p=profileById(curPid)||{};
+  if(CB.mode==="fail")return esc(CB.lastErr||"云服务不可用")+"（本机模式仍可正常学习，进度不会丢失）";
+  if(!CB.ready)return "正在连接云服务…";
+  if(!CB.online)return "未登录。登录后进度会自动同步，换设备也能接着学。";
+  if(!p.user)return "当前档案「"+esc(p.name||"")+"」未绑定云账号，进度仅保存在本机。可到「家长管理」里为它绑定账号。";
+  if(!p.uid||p.uid!==CB.uid)return "本机现在登录的是其他账号，当前档案暂不同步。";
+  if(CB.lastErr)return "上次同步失败："+esc(CB.lastErr);
+  const last=CB.lastSync?new Date(CB.lastSync).toLocaleString("zh-CN"):"—";
+  return "已登录："+esc(p.user)+" · 上次同步 "+esc(last);
+}
+function gateSyncHtml(){
+  if(CLOUD_OFF){
+    return '<div class="cbRow" style="justify-content:space-between">'+
+        '<span><span class="cbDot off"></span> 单机模式</span></div>'+
+      '<div class="muted" style="margin-top:5px;font-size:12px">学习进度保存在本机，不做跨设备同步</div>';
+  }
+  // 档案门上还没有 curPid，所以这里不能用 cbBound() 判断（那会一直显示「未绑定」）
+  const dot=CB.mode==="fail"?"cbDot err":(CB.online?"cbDot on":(CB.ready?"cbDot off":"cbDot"));
+  const txt=CB.mode==="fail"?"不可用":(CB.online?"已登录":(CB.ready?"未登录":"未连接"));
+  const last=CB.lastSync?new Date(CB.lastSync).toLocaleString("zh-CN",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}):"";
+  let hint;
+  if(CB.online)hint=last?("上次同步 "+esc(last)+" · 进入档案后自动同步"):"进入档案后会自动同步";
+  else if(CB.mode==="fail")hint=esc(CB.lastErr||"云服务暂不可用，本机模式仍可正常学习");
+  else if(!CB.ready)hint="正在连接云服务…";
+  else hint="登录后进度可跨设备同步（账号由家长在云开发控制台创建）";
+  const btns=CB.online
+    ? '<button class="btn2" onclick="cbLogoutFlow()">退出云登录</button>'
+    : '<button class="btn2" onclick="openCloudLogin()">登录云账号</button>';
+  return '<div class="cbRow" style="justify-content:space-between">'+
+      '<span><span class="'+dot+'"></span> 云端同步：'+esc(txt)+'</span></div>'+
+    '<div class="muted" style="margin-top:5px;font-size:12px">'+hint+'</div>'+
+    '<div class="cbBtns">'+btns+'</div>';
+}
+function updateSyncChip(){
+  try{
+    const g=document.getElementById("gateSyncLine");
+    if(g)g.innerHTML=gateSyncHtml();
+    const m=document.getElementById("cbStateLine");
+    if(m)m.innerHTML=cbStateHtml();
+  }catch(e){}
+}
+function isGateVisible(){ const g=document.getElementById("gate"); return !!(g&&g.style.display==="block"); }
+
+/* ---------- 云登录界面 ---------- */
+function validCbUser(u){
+  if(!u||u.length>32)return false;
+  if(!/^[A-Za-z0-9_-]+$/.test(u))return false;
+  if(/^\d+$/.test(u))return false;                    // 不允许纯数字
+  if(/^[-_]/.test(u)||/[-_]$/.test(u))return false;   // - _ 不能在首尾
+  return true;
+}
+function openCloudLogin(preUser,forPid){
+  pwCtx={user:preUser||"",forPid:forPid||null};
+  drawPwdSheet("登录云账号",preUser||"");
+}
+function drawPwdSheet(title,user){
+  const gs=document.getElementById("gateSheet");
+  gs.style.display="block";
+  gs.innerHTML='<div class="gsBox">'+
+    '<h3>'+esc(title)+'</h3>'+
+    '<div class="fRow" style="margin-top:14px"><label>账号（用户名）</label>'+
+      '<input id="cbUser" autocomplete="username" autocapitalize="off" spellcheck="false" value="'+esc(user||"")+'" placeholder="例如 emma"></div>'+
+    '<div class="fRow"><label>密码</label><div class="pwWrap">'+
+      '<input id="cbPass" type="password" autocomplete="current-password" placeholder="8~32 位">'+
+      '<button class="eye" type="button" onclick="togglePw()">👁</button></div></div>'+
+    '<div class="pinErr" id="pinErr" style="height:auto;min-height:18px"></div>'+
+    '<button class="btn3d" onclick="submitCloudLogin()">登录并同步</button>'+
+    '<div style="height:9px"></div>'+
+    '<button class="btn2" style="width:100%;padding:12px 0;margin-top:9px" onclick="localPinEscape()">云端连不上？改用本机 PIN 进入</button>'+
+    '<button class="btn2" style="width:100%;padding:12px 0" onclick="closeGateSheet()">取消</button>'+
+    '<div class="gtip" style="text-align:center;margin-top:14px;font-size:12px;color:#8A7452;line-height:1.75">'+
+      '账号由家长在「云开发控制台 → 身份认证 → 用户管理」中创建。<br>'+
+      '密码需 8~32 位，且含大写/小写/数字/符号中的 3 类。<br>'+
+      '用「Emma2026」这种大小写+数字即可，不必加符号。'+
+    '</div></div>';
+  setTimeout(function(){
+    const e=document.getElementById(pwCtx&&pwCtx.user?"cbPass":"cbUser");
+    if(e)e.focus();
+  },90);
+}
+function togglePw(){
+  const p=document.getElementById("cbPass");
+  if(p)p.type=(p.type==="password"?"text":"password");
+}
+async function submitCloudLogin(){
+  const u=(document.getElementById("cbUser").value||"").trim();
+  const p=(document.getElementById("cbPass").value||"");
+  const err=document.getElementById("pinErr");
+  const btn=document.querySelector("#gateSheet .btn3d");
+  if(!validCbUser(u)){ if(err)err.textContent="账号名不合法（1~32 位字母/数字/-/_，不能纯数字）"; return; }
+  if(!p){ if(err)err.textContent="请输入密码"; return; }
+  if(err)err.textContent="正在连接云端…";
+  if(btn){ btn.disabled=true; btn.textContent="连接云端…"; }
+  const targetPid=pwCtx?pwCtx.forPid:null;
+  try{
+    const uid=await cbLogin(u,p);
+    let prof=null;
+    for(let i=0;i<HUB.profiles.length;i++){ const q=HUB.profiles[i]; if(q.uid&&q.uid===uid){ prof=q; break; } }
+    if(!prof){
+      let target=targetPid?profileById(targetPid):null;
+      if(!target){
+        const unbound=HUB.profiles.filter(function(x){ return !x.user; });
+        if(unbound.length===1)target=unbound[0];       // 本机只留一个未绑定档案时自动认领
+      }
+      if(target){ target.user=u; target.uid=uid; }
+      else{ const id=newProfileId(); target={id:id,name:u,avatar:"🧒",pin:"",user:u,uid:uid}; HUB.profiles.push(target); }
+      saveHub(); prof=target;
+    }else if(!prof.user){ prof.user=u; prof.uid=uid; saveHub(); }
+    closeGateSheet();
+    await enterProfile(prof.id,true);
+    await cbSync(true);
+    render(); renderGate();
+    toast("☁️ 云端同步已开启");
+  }catch(e){
+    if(err)err.textContent=(e&&e.message)?e.message:"登录失败，请检查账号密码";
+    if(btn){ btn.disabled=false; btn.textContent="登录并同步"; }
+  }
+}
+async function cbLogoutFlow(){
+  if(!confirm("退出云账号登录？\n\n退出后：本机学习进度仍然保留、可继续使用，但不再自动同步到其他设备。"))return;
+  clearTimeout(pushTimer);
+  await cbSync(true);            // 尽力先把本机进度送上去，再登出
+  await cbLogout();
+  toast("已退出云登录");
+  if(curPid)render();
+  if(isGateVisible())renderGate();
+}
+function unbindCloud(){
+  const p=profileById(curPid); if(!p||!p.user)return;
+  if(!confirm("解除「"+p.name+"」与云账号的绑定？\n\n解除后该档案不再同步到云端（云端已有数据不会删除）。"))return;
+  p.user=""; p.uid=""; saveHub(); render(); toast("已解除云端绑定");
+}
+
+/* ---------- 档案门：已绑云账号走登录，否则走本机 PIN ---------- */
+async function tapProfile(id){
+  const p=profileById(id); if(!p)return;
+  if(p.user&&!CLOUD_OFF){
+    const ok=await cbInit();
+    if(!ok){ toast("云服务暂不可用，改用本机 PIN"); localPinPath(id); return; }
+    const s=await cbSession();
+    const uid=s&&s.user&&(s.user.id||s.user.uid);
+    if(uid&&p.uid&&uid===p.uid){ enterProfile(id); return; }   // 本机已登录同一账号 → 免密进入
+    openCloudLogin(p.user,id);
+    return;
+  }
+  localPinPath(id);
+}
+function localPinPath(id){
+  const p=profileById(id); if(!p)return;
+  if(p.pin){ pendingPid=id; pad={mode:"verify",expected:p.pin,buf:"",first:"",onOk:null,title:p.name+" 的 PIN 码"}; drawPad(); }
+  else enterProfile(id);
+}
+/* 逃生口：云登录弹层里可改走本机 PIN，避免「云端连不上 → 孩子被卡在登录页进不去」 */
+function localPinEscape(){
+  const id=(pwCtx&&pwCtx.forPid)?pwCtx.forPid:null;
+  closeGateSheet();
+  if(id){ toast("改用本机 PIN 进入"); localPinPath(id); }
+  else toast("请从档案门重新选择档案");
+}
+
+/* ==================== boot ==================== */
+loadHub();
+if(!WORDS_OK){
+  showWordsError();                             // 词库缺失：给可见的阻塞提示，别让用户对着「点了没反应」猜
+}else{
+  showGate();
+  if(!CLOUD_OFF){
+    cbInit().then(function(){                   // 异步连云端；失败不影响本机使用
+      if(isGateVisible())renderGate();
+      if(curPid)render();
+    });
+  }
+}
+
+/* 切回前台 → 拉取合并；切后台/离开 → 尽力推送 */
+document.addEventListener("visibilitychange",function(){
+  if(!curPid||!S)return;
+  if(document.visibilityState==="hidden"){ clearTimeout(pushTimer); cbSync(true); }
+  else cbSync(true).then(function(ok){ if(ok&&curPid)render(); });
+});
+window.addEventListener("pagehide",function(){ if(curPid&&S){ clearTimeout(pushTimer); cbSync(true); } });
+</script>
+</body>
+</html>
